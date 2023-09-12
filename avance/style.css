@@ -73,30 +73,29 @@ h1::after{
 }
 
 .botones{
-    display: grid;
+    display: flex;
     place-content: center;
     position: absolute;
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Corrige el centrado */
     min-width: 280px;
     max-width: 25%;
     width: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    padding: 25px;
-    box-shadow: 0 1rem 1rem  rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.3);
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(1rem);
     border-radius: 5px;
     color: #fff;
-    
-    
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 button{
     display: grid;
     place-content: center;
     position: relative;
-
     min-width: 280px;
     max-width: 25%;
     width: 25%;
@@ -133,4 +132,29 @@ box-shadow: 3px 0px 30px rgba(163, 163, 163, 1);
     h1::after{
         display: none;
     }
+}
+
+.btnn{
+    text-align: center;
+    text-decoration: none;
+    margin: 30px 0;
+    display: inline-block;
+    padding: 10px 20px;
+    padding: 10px 20px; 
+    background-color: #3498db; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none;
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    width: 200px;
+
+}
+
+.sb{
+
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }

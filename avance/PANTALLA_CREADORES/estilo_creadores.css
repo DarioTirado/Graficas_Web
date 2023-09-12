@@ -27,3 +27,19 @@ body{
         letter-spacing: 4px; /* Espaciado entre letras aumentado */ 
   
 }
+
+.button {
+    margin: 30px 0;
+    display: inline-block;
+    padding: 10px 20px;
+    padding: 10px 20px; 
+    background-color: #3498db; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none;
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    text-decoration: none;
+    
+  }
