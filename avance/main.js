@@ -5,6 +5,7 @@ import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+//camera.position.set(0, 3, 5); // Ajusta la posición de la cámara (x, y, z) según tus necesidades
 var move = true;
 var vida=100;
 const rotationSpeed = -0.50;
@@ -44,6 +45,8 @@ const group = new THREE.Group();
 const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 const material = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
 const cube = new THREE.Mesh( geometry, material );
+
+cube.position.set(0, 30, 0); // Reemplaza x, y, z con las coordenadas deseadas
 
 group.add( cube );
 
@@ -129,6 +132,52 @@ scene.add(group);
 var esta_logeado = false;
 camera.rotation.x += rotationSpeed;
 Modelos3D();
+
+
+const textureLoader = new THREE.TextureLoader();
+const texture1 = textureLoader.load('media/fondogw.jpg'); // Ruta de la primera textura
+const texture2 = textureLoader.load('media/grass_tex.jpg'); 
+const texture3 = textureLoader.load('media/fondogw.jpg'); 
+const texture4 = textureLoader.load('media/fondogw.jpg'); 
+const texture5 = textureLoader.load('media/fondogw.jpg'); 
+
+
+const greenMaterial1 = new THREE.MeshPhongMaterial({ map: texture1 });
+const greenMaterial2 = new THREE.MeshPhongMaterial({ map: texture2 });
+const greenMaterial3 = new THREE.MeshPhongMaterial({ map: texture3 });
+const greenMaterial4 = new THREE.MeshPhongMaterial({ map: texture4 });
+const greenMaterial5 = new THREE.MeshPhongMaterial({ map: texture5 });
+
+
+const greenPlaneGeometry = new THREE.PlaneGeometry(100, 100); // Ajusta el tamaño del plano 
+const greenPlane1 = new THREE.Mesh(greenPlaneGeometry, greenMaterial1);
+const greenPlane2 = new THREE.Mesh(greenPlaneGeometry, greenMaterial2);
+const greenPlane3 = new THREE.Mesh(greenPlaneGeometry, greenMaterial3);
+const greenPlane4 = new THREE.Mesh(greenPlaneGeometry, greenMaterial4);
+const greenPlane5 = new THREE.Mesh(greenPlaneGeometry, greenMaterial5);
+
+
+
+
+// Cambiar posición y rotación del primer plano
+greenPlane1.position.set(0, -10, -25); // Cambia las coordenadas x, y, z 
+greenPlane1.rotation.set(THREE.MathUtils.degToRad(0), 0, 0); // Cambia los ángulos de rotación 
+
+// Cambiar posición y rotación del segundo plano (paralelo al primero)
+greenPlane2.position.set(0, -10, 10); // Ajusta la posición para que sea paralelo al primer plano
+greenPlane2.rotation.set(THREE.MathUtils.degToRad(180), 0, 0); // Iguala la rotación al primer plano
+
+greenPlane3.position.set(-25, -10, 20); 
+greenPlane3.rotation.set(THREE.MathUtils.degToRad(0), 90, 0); 
+
+greenPlane4.position.set(25, -10, 20); 
+greenPlane4.rotation.set(THREE.MathUtils.degToRad(0), -90, 0); 
+
+greenPlane5.position.set(0, -10, 50); 
+greenPlane5.rotation.set(THREE.MathUtils.degToRad(0), 0, 0); 
+
+
+scene.add(greenPlane1, greenPlane2, greenPlane3, greenPlane4, greenPlane5);
 
 
 //FUNCIONES//
