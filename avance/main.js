@@ -176,8 +176,10 @@ greenPlane4.rotation.set(THREE.MathUtils.degToRad(0), -90, 0);
 greenPlane5.position.set(0, -10, 50); 
 greenPlane5.rotation.set(THREE.MathUtils.degToRad(0), 0, 0); 
 
+scene.add(greenPlane1, greenPlane2, greenPlane3, greenPlane4, greenPlane5); 
 
-scene.add(greenPlane1, greenPlane2, greenPlane3, greenPlane4, greenPlane5);
+
+
 
 
 //FUNCIONES//
