@@ -49,10 +49,8 @@ const cube = new THREE.Mesh( geometry, material );
 cube.position.set(0, -49, 50); 
 group.add( cube );
 
-
-
 //LUCES//
-const al = new THREE.AmbientLight(0xffffff, 0.3);
+const al = new THREE.AmbientLight(0xffffff, 0.5);
 group.add(al);
 
 const dl = new THREE.DirectionalLight( 0xffffff, 0.6);
@@ -74,7 +72,6 @@ scene.add(group);
 
 var esta_logeado = false;
 camera.rotation.x += rotationSpeed;
-Modelos3D();
 
 //HORIZONTE//
 const textureLoader = new THREE.TextureLoader();
@@ -121,81 +118,8 @@ greenPlane2.rotation.set(THREE.MathUtils.degToRad(180), 0, 0); // Iguala la rota
 
 scene.add(greenPlane1, greenPlane2); 
 
+//---------------------------------------Modelos-------------------------------------------------------
 
-
-
-
-//FUNCIONES//
-function Colisiones(){
-	
-
-}
-function animate() {
-	
-	
-
-	requestAnimationFrame( animate );
-
-	//cube.rotation.x += 0.01;
-	//cube.rotation.y += 0.01;
-
-
-	
-
-	renderer.render( scene, camera );
-	
-
-}
-
-$(document).ready(function() {
-	animate();
-
- $("#btnIniciar").on("click",iniciarSesion);
-
- $(document).keypress(function(e){
-
-var tecla = String.fromCharCode(e.which);
-
-const toggleButton = document.getElementById("toggleButton");
-const hiddenText = document.getElementById("hiddenText");
-
-
-if(tecla=='p'||tecla=='P'){
-	alert("POSICION:" +cube.position.x + "," + cube.position.z);
-	
-}
-if(tecla=='a'||tecla=='A'){
-	cube.position.x--;
-}
-if(tecla=='d'||tecla=='D'){
-	cube.position.x++;
-}
-if(tecla=='w'||tecla=='W'){
-	cube.position.z--;
-}
-if(tecla=='s'||tecla=='S'){
-	cube.position.z ++;
-}
-if(tecla=='c'||tecla=='C' ){
-	if(al.intensity<1)
-	al.intensity +=0.1;
-	//$('canvas').hide();
-//	hiddenText.classList.add("hidden");
-}
-
-if(tecla=='v'||tecla=='V'){
-	if(al.intensity>0)
-	al.intensity -=0.1;
-	//$('canvas').show();
-	//hiddenText.classList.remove("hidden");
-}
-
- });
-
-
-});
-
-function Modelos3D(){
 //CASA//    											LUEGO HAGO LA FUNCION PARA MANDARLE SOLO LOS VALORES
 const granja = new OBJLoader(manager);
 var mtlGarnja = new MTLLoader(manager);
@@ -205,9 +129,6 @@ var mtlGarnja = new MTLLoader(manager);
 //Suelo
 const Suelo = new OBJLoader(manager);
 var mtlSuelo = new MTLLoader(manager);
-//Cultivo1
-const cultivo1 = new OBJLoader(manager);
-var mtlcultivo1 = new MTLLoader(manager);
 //cultivo2
 const cultivo2 = new OBJLoader(manager);
 var mtlcultivo2 = new MTLLoader(manager);
@@ -218,12 +139,22 @@ const mount = new OBJLoader(manager);
 var mtlmount = new MTLLoader(manager);
 const mount2 = new OBJLoader(manager);
 var mtlmount2 = new MTLLoader(manager);
+//Cerca
+const cerca_izq = new OBJLoader(manager);
+var mtlcerca_izq = new MTLLoader(manager);
+const cerca_der = new OBJLoader(manager);
+var mtlcerca_der = new MTLLoader(manager);
+const cerca_atr = new OBJLoader(manager);
+var mtlcerca_atr = new MTLLoader(manager);
+const cerca_adl = new OBJLoader(manager);
+var mtlcerca_adl = new MTLLoader(manager);
 //Tractores
 const trac1 = new OBJLoader(manager);
 var mtltrac1 = new MTLLoader(manager);
+let object1;
 const trac2 = new OBJLoader(manager);
 var mtltrac2 = new MTLLoader(manager);
-
+let object2;
 
 mtltrac1.load('models/Tractor/Tractor.mtl',function (materials){
 
@@ -234,16 +165,11 @@ mtltrac1.load('models/Tractor/Tractor.mtl',function (materials){
 	trac1.load('models/Tractor/Tractor.obj',
 
 		function ( object ) {
-
-      object.scale.copy( new THREE.Vector3(0.2,0.2,0.2));
-	  object.position.x =2;
-	  object.position.y =-60;
-	  object.position.z =30;
-	  object.rotation.y =98.8;
-	 
-
-			scene.add( object );
-
+			object1=object;
+			object1.scale.copy(new THREE.Vector3(0.12, 0.12, 0.12));
+			object1.position.set(-11, -60, 35);
+			object1.rotation.y = 98.8;
+			scene.add(object1);
 		});
 
 	console.log(materials);
@@ -258,17 +184,13 @@ mtltrac2.load('models/Tractor/Tractor2.mtl',function (materials){
 	trac2.load('models/Tractor/Tractor2.obj',
 
 		function ( object ) {
+			object2=object;
+      object2.scale.copy( new THREE.Vector3(0.12, 0.12, 0.12));
+	  object2.position.set(9, -60, 35);
+	  object2.rotation.y =98.8;
+	   scene.add( object2 );
 
-      object.scale.copy( new THREE.Vector3(0.2,0.2,0.2));
-	  object.position.x =2;
-	  object.position.y =-60;
-	  object.position.z =15;
-	  object.rotation.y =98.8;
-	 
-
-			scene.add( object );
-
-		});
+});
 
 	console.log(materials);
 });
@@ -284,10 +206,10 @@ mtlcultivo2.load('models/Cultivo2/cultivo2.mtl',function (materials){
 		function ( object ) {
 
       object.scale.copy( new THREE.Vector3(0.2,0.2,0.2));
-	  object.position.x =2;
+	  object.position.x =-23;
 	  object.position.y =-60;
 	  object.position.z =40;
-	  object.rotation.y =99;
+	  object.rotation.y =110;
 	 
 
 			scene.add( object );
@@ -310,7 +232,7 @@ mtlmount2.load('models/Mount/mount.mtl',function (materials){
       object.scale.copy( new THREE.Vector3(5,5,5));
 	  object.position.x =64;
 	  object.position.y =-60;
-	  object.position.z =-35;
+	  object.position.z =-37;
 	  object.rotation.y =116.33;
 	 
 
@@ -334,7 +256,7 @@ mtlmount.load('models/Mount/mount.mtl',function (materials){
       object.scale.copy( new THREE.Vector3(5,5,5));
 	  object.position.x =-69;
 	  object.position.y =-60;
-	  object.position.z =-48;
+	  object.position.z =-50;
 	  object.rotation.y =116.33;
 	 
 
@@ -356,34 +278,10 @@ mtlcultivo2.load('models/Cultivo2/cultivo2.mtl',function (materials){
 		function ( object ) {
 
       object.scale.copy( new THREE.Vector3(0.2,0.2,0.2));
-	  object.position.x =-12;
+	  object.position.x =-24;
 	  object.position.y =-60;
 	  object.position.z =30;
 	  object.rotation.y =116.33;
-	 
-
-			scene.add( object );
-
-		});
-
-	console.log(materials);
-});
- 
-mtlcultivo1.load('models/Cultivo1/cultivo1.mtl',function (materials){
-
-	materials.preload();
-
-	cultivo1.setMaterials(materials);
-
-	cultivo1.load('models/Cultivo1/cultivo1.obj',
-
-		function ( object ) {
-
-      object.scale.copy( new THREE.Vector3(0.3,0.3,0.3));
-	  object.position.x =15;
-	  object.position.y =-60;
-	  object.position.z =15;
-	  object.rotation.y =116.1;
 	 
 
 			scene.add( object );
@@ -427,10 +325,10 @@ mtlGarnja.load('models/granja/Farm.mtl',function (materials){
 
 		function ( object ) {
 
-      object.scale.copy( new THREE.Vector3(0.2,0.2,0.2));
-	  object.position.x =15;
+      object.scale.copy( new THREE.Vector3(0.4,0.4,0.4));
+	  object.position.x =24;
 	  object.position.y =-60;
-	  object.position.z =35;
+	  object.position.z =34;
 	  object.rotation.y =116.1;
 	
 
@@ -455,7 +353,7 @@ mtlMolino.load('models/Molino/Molino.mtl',function (materials){
       object.scale.copy( new THREE.Vector3(0.2,0.2,0.2));
 	  object.position.x =-20;
 	  object.position.y =-60;
-	  object.position.z =10;
+	  object.position.z =5;
 	  object.rotation.y =116.1;
 	
 
@@ -494,7 +392,8 @@ mtltree.load('models/Tree.mtl',function (materials){
 	  });
 
   console.log(materials);
-	});
+
+});
 
 //obj3
 
@@ -524,9 +423,224 @@ mtlplanta.load('models/planta.mtl',function (materials){
 	  });
 
   console.log(materials);
-	})
+
+});
+
+mtlcerca_izq.load('models/Cerca/Cerca_1.mtl',function (materials){
+
+  materials.preload();
+
+  cerca_izq.setMaterials(materials);
+
+  cerca_izq.load('models/Cerca/Cerca_1.obj',
+
+	  function ( object ) {
+
+	object.scale.copy( new THREE.Vector3(0.4,0.33,0.4));
+	 object.position.x =-18;
+	  object.position.y =-60;
+	  object.position.z =27;
+	  object.rotation.y =99;
+  
+
+		  scene.add( object );
+
+	  });
+
+  console.log(materials);
+
+});
+
+mtlcerca_der.load('models/Cerca/Cerca_1.mtl',function (materials){
+
+	materials.preload();
+  
+	cerca_der.setMaterials(materials);
+  
+	cerca_der.load('models/Cerca/Cerca_1.obj',
+  
+		function ( object ) {
+  
+	  object.scale.copy( new THREE.Vector3(0.4,0.33,0.4));
+	   object.position.x =15;
+		object.position.y =-60;
+		object.position.z =27;
+		object.rotation.y =99;
+	
+  
+			scene.add( object );
+  
+		});
+  
+	console.log(materials);
+  
+  });
+
+  mtlcerca_atr.load('models/Cerca/Cerca_1.mtl',function (materials){
+
+	materials.preload();
+  
+	cerca_atr.setMaterials(materials);
+  
+	cerca_atr.load('models/Cerca/Cerca_1.obj',
+  
+		function ( object ) {
+  
+	  object.scale.copy( new THREE.Vector3(0.42,0.33,0.4));
+	   object.position.x =-3;
+		object.position.y =-60;
+		object.position.z =12;
+		object.rotation.y =110;
+	
+  
+			scene.add( object );
+  
+		});
+  
+	console.log(materials);
+  
+  });
+
+  mtlcerca_adl.load('models/Cerca/Cerca_1.mtl',function (materials){
+
+	materials.preload();
+  
+	cerca_adl.setMaterials(materials);
+  
+	cerca_adl.load('models/Cerca/Cerca_1.obj',
+  
+		function ( object ) {
+  
+	  object.scale.copy( new THREE.Vector3(0.43,0.33,0.4));
+	   object.position.x =-1;
+		object.position.y =-60;
+		object.position.z =41;
+		object.rotation.y =110;
+	
+  
+			scene.add( object );
+  
+		});
+  
+	console.log(materials);
+  
+  });
+
+
+//-----------------------------------------FUNCIONES--------------------------------------------------------
+function Colisiones(){
+	
 
 }
+function animate() {
+	
+	requestAnimationFrame( animate );
+
+	//cube.rotation.x += 0.01;
+	//cube.rotation.y += 0.01;
+
+
+	
+
+	renderer.render( scene, camera );
+	
+
+}
+
+$(document).ready(function() {
+	animate();
+ $("#btnIniciar").on("click",iniciarSesion);
+
+ $(document).keypress(function(e){
+
+var tecla = String.fromCharCode(e.which);
+
+const toggleButton = document.getElementById("toggleButton");
+const hiddenText = document.getElementById("hiddenText");
+
+
+if(tecla=='p'||tecla=='P'){
+	alert("POSICION:" +cube.position.x + "," + cube.position.z);
+}
+
+//Jugador 1
+if(tecla=='a'||tecla=='A'){
+	//cube.position.x--;
+	if (object1) {
+		object1.position.x-=0.7;
+		object1.rotation.y=270;
+	} 
+}
+if(tecla=='d'||tecla=='D'){
+	//cube.position.x++;
+	if (object1) {
+		object1.position.x+=0.7;
+		object1.rotation.y=110;
+	} 
+}
+if(tecla=='w'||tecla=='W'){
+	//cube.position.z--;
+	if (object1) {
+		object1.position.z-=0.7;
+		object1.rotation.y=98.8;
+	} 
+}
+if(tecla=='s'||tecla=='S'){
+	//cube.position.z ++;
+	if (object1) {
+		object1.position.z+=0.7;
+		object1.rotation.y=20.41;
+	} 
+}
+
+//Jugador 2
+if(tecla=='j'||tecla=='J'){
+	//cube.position.x--;
+	if (object2) {
+		object2.position.x-=0.7;
+		object2.rotation.y=270;
+	} 
+}
+if(tecla=='l'||tecla=='L'){
+	//cube.position.x++;
+	if (object2) {
+		object2.position.x+=0.7;
+		object2.rotation.y=110;
+	} 
+}
+if(tecla=='i'||tecla=='I'){
+	//cube.position.z--;
+	if (object2) {
+		object2.position.z-=0.7;
+		object2.rotation.y=98.8;
+	} 
+}
+if(tecla=='k'||tecla=='K'){
+	//cube.position.z ++;
+	if (object2) {
+		object2.position.z+=0.7;
+		object2.rotation.y=20.41;
+	} 
+}
+
+if(tecla=='c'||tecla=='C' ){
+	if(al.intensity<1)
+	al.intensity +=0.1;
+	//$('canvas').hide();
+//	hiddenText.classList.add("hidden");
+}
+
+if(tecla=='v'||tecla=='V'){
+	if(al.intensity>0)
+	al.intensity -=0.1;
+	//$('canvas').show();
+	//hiddenText.classList.remove("hidden");
+}
+
+ });
+
+
+});
 
 function iniciarSesion(nombre, contra){
 alert(nombre, contra);
