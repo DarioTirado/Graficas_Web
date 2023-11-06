@@ -224,10 +224,12 @@ var mtltrac1 = new MTLLoader(manager);
 const trac2 = new OBJLoader(manager);
 var mtltrac2 = new MTLLoader(manager);
 //Colisiones_variables
+var direccion_tractor;
 var move_tractor_izquierda = true;
 var move_tractor_derecha = true;
 var move_tractor_arriba = true;
 var move_tractor_abajo = true;
+var direccion_tractor2;
 var move_tractor2_izquierda = true;
 var move_tractor2_derecha = true;
 var move_tractor2_arriba = true;
@@ -689,94 +691,35 @@ if(tecla=='e'||tecla=='E'){
 	tractor_posicion.z=35;
 	tractor_obj.rotation.y=98.8;
 	//cube_tractor.rotation.y=270;
-	move_tractor_izquierda = true;
-	move_tractor_derecha = true;
-	move_tractor_arriba = true;
-	move_tractor_abajo = true;
+	direccion_tractor = "arriba";
 }
-if(tecla=='a'||tecla=='A'){
+if((tecla=='a'||tecla=='A') && move_tractor_izquierda){
 	//cube.position.x--;
-	if(cube_tractor_col.intersectsBox(cube_tractor2_col))
-	{
-		if((!move_tractor_derecha)||(!move_tractor_arriba)||(!move_tractor_abajo)){
-			tractor_posicion.x-=1;
-		    tractor_obj.rotation.y=270;
-		    //cube_tractor.rotation.y=98.8;
-			move_tractor_derecha=true;
-			move_tractor_arriba=true;
-			move_tractor_abajo=true;
-		}else{
-			move_tractor_izquierda=false;
-		}
-	}else{
-		tractor_posicion.x-=0.7;
-		tractor_obj.rotation.y=270;
-		//cube_tractor.rotation.y=98.8;
-		move_tractor_izquierda=false;
-	}
+	tractor_posicion.x-=0.7;
+	tractor_obj.rotation.y=270;
+	direccion_tractor = "izquierda";
+	//cube_tractor.rotation.y=98.8;
 }
-if(tecla=='d'||tecla=='D'){
+if((tecla=='d'||tecla=='D') && move_tractor_derecha){
 	//cube.position.x++;
-	if(cube_tractor_col.intersectsBox(cube_tractor2_col))
-	{
-		if((!move_tractor_izquierda)||(!move_tractor_arriba)||(!move_tractor_abajo)){
-			tractor_posicion.x+=1;
-	        tractor_obj.rotation.y=110;
-	        //cube_tractor.rotation.y=20.41;
-			move_tractor_izquierda=true;
-			move_tractor_arriba=true;
-			move_tractor_abajo=true;
-		}else{
-			move_tractor_derecha=false;
-		}
-	}else{
-		tractor_posicion.x+=0.7;
-	    tractor_obj.rotation.y=110;
-	    //cube_tractor.rotation.y=20.41;
-		move_tractor_derecha=false;
-	}
+	tractor_posicion.x+=0.7;
+	tractor_obj.rotation.y=110;
+	direccion_tractor = "derecha";
+	//cube_tractor.rotation.y=20.41;
 }
-if(tecla=='w'||tecla=='W'){
+if((tecla=='w'||tecla=='W') && move_tractor_arriba){
 	//cube.position.z--;
-	if(cube_tractor_col.intersectsBox(cube_tractor2_col))
-	{
-		if((!move_tractor_izquierda)||(!move_tractor_derecha)||(!move_tractor_abajo)){
-			tractor_posicion.z-=1;
-		    tractor_obj.rotation.y=98.8;
-		    //cube_tractor.rotation.y=270;
-			move_tractor_izquierda=true;
-			move_tractor_derecha=true;
-			move_tractor_abajo=true;
-		}else{
-			move_tractor_arriba=false;
-		}
-	}else{
-		tractor_posicion.z-=0.7;
-		tractor_obj.rotation.y=98.8;
-		//cube_tractor.rotation.y=270;
-		move_tractor_arriba=false;
-	}
+	tractor_posicion.z-=0.7;
+	tractor_obj.rotation.y=98.8;
+	direccion_tractor = "arriba";
+	//cube_tractor.rotation.y=270;
 }
-if(tecla=='s'||tecla=='S'){
+if((tecla=='s'||tecla=='S') && move_tractor_abajo){
 	//cube.position.z ++;
-	if(cube_tractor_col.intersectsBox(cube_tractor2_col))
-	{
-		if((!move_tractor_izquierda)||(!move_tractor_derecha)||(!move_tractor_arriba)){
-			tractor_posicion.z+=1;
-	        tractor_obj.rotation.y=20.41;
-	        //cube_tractor.rotation.y=110;
-			move_tractor_izquierda=true;
-			move_tractor_derecha=true;
-			move_tractor_arriba=true;
-		}else{
-			move_tractor_abajo=false;
-		}
-	}else{
-	    tractor_posicion.z+=0.7;
-	    tractor_obj.rotation.y=20.41;
-	    //cube_tractor.rotation.y=110;
-		move_tractor_abajo=false;
-	}
+	tractor_posicion.z+=0.7;
+	tractor_obj.rotation.y=20.41;
+	direccion_tractor = "abajo";
+	//cube_tractor.rotation.y=110;
 }
 
 //Jugador 2
@@ -784,86 +727,31 @@ if(tecla=='o'||tecla=='O'){
 	tractor2_posicion.x=9;
 	tractor2_posicion.z=35;
 	tractor2_obj.rotation.y=98.8;
-	move_tractor2_izquierda = true;
-	move_tractor2_derecha = true;
-	move_tractor2_arriba = true;
-	move_tractor2_abajo = true;
+	direccion_tractor2 = "arriba";
 }
-if(tecla=='j'||tecla=='J'){
+if((tecla=='j'||tecla=='J') && move_tractor2_izquierda){
 	//cube.position.x--;
-	if(cube_tractor_col.intersectsBox(cube_tractor2_col))
-	{
-		if((!move_tractor2_derecha)||(!move_tractor2_arriba)||(!move_tractor2_abajo)){
-			tractor2_posicion.x-=1;
-		    tractor2_obj.rotation.y=270;
-			move_tractor2_derecha=true;
-			move_tractor2_arriba=true;
-			move_tractor2_abajo=true;
-		}else{
-			move_tractor2_izquierda=false;
-		}
-	}else{
-		tractor2_posicion.x-=0.7;
-		tractor2_obj.rotation.y=270;
-		move_tractor2_izquierda=false;
-	}
+	tractor2_posicion.x-=0.7;
+	tractor2_obj.rotation.y=270;
+	direccion_tractor2 = "izquierda";
 }
-if(tecla=='l'||tecla=='L'){
+if((tecla=='l'||tecla=='L') && move_tractor2_derecha){
 	//cube.position.x++;
-	if(cube_tractor_col.intersectsBox(cube_tractor2_col))
-	{
-		if((!move_tractor2_izquierda)||(!move_tractor2_arriba)||(!move_tractor2_abajo)){
-			tractor2_posicion.x+=1;
-	        tractor2_obj.rotation.y=110;
-			move_tractor2_izquierda=true;
-			move_tractor2_arriba=true;
-			move_tractor2_abajo=true;
-		}else{
-			move_tractor2_derecha=false;
-		}
-	}else{
-		tractor2_posicion.x+=0.7;
-	    tractor2_obj.rotation.y=110;
-		move_tractor2_derecha=false;
-	}
+	tractor2_posicion.x+=0.7;
+	tractor2_obj.rotation.y=110;
+	direccion_tractor2 = "derecha";
 }
-if(tecla=='i'||tecla=='I'){
+if((tecla=='i'||tecla=='I') && move_tractor2_arriba){
 	//cube.position.z--;
-	if(cube_tractor_col.intersectsBox(cube_tractor2_col))
-	{
-		if((!move_tractor2_izquierda)||(!move_tractor2_derecha)||(!move_tractor2_abajo)){
-			tractor2_posicion.z-=1;
-		    tractor2_obj.rotation.y=98.8;
-			move_tractor2_izquierda=true;
-			move_tractor2_derecha=true;
-			move_tractor2_abajo=true;
-		}else{
-			move_tractor2_arriba=false;
-		}
-	}else{
-		tractor2_posicion.z-=0.7;
-		tractor2_obj.rotation.y=98.8;
-		move_tractor2_arriba=false;
-	}
+	tractor2_posicion.z-=0.7;
+	tractor2_obj.rotation.y=98.8;
+	direccion_tractor2 = "arriba";
 }
-if(tecla=='k'||tecla=='K'){
+if((tecla=='k'||tecla=='K') && move_tractor2_abajo){
 	//cube.position.z ++;
-	if(cube_tractor_col.intersectsBox(cube_tractor2_col))
-	{
-		if((!move_tractor2_izquierda)||(!move_tractor2_derecha)||(!move_tractor2_arriba)){
-			tractor2_posicion.z+=1;
-	        tractor2_obj.rotation.y=20.41;
-			move_tractor2_izquierda=true;
-			move_tractor2_derecha=true;
-			move_tractor2_arriba=true;
-		}else{
-			move_tractor2_abajo=false;
-		}
-	}else{
-	    tractor2_posicion.z+=0.7;
-	    tractor2_obj.rotation.y=20.41;
-		move_tractor2_abajo=false;
-	}
+	tractor2_posicion.z+=0.7;
+	tractor2_obj.rotation.y=20.41;
+	direccion_tractor2 = "abajo";
 }
 
 if(tecla=='c'||tecla=='C' ){
@@ -886,7 +774,42 @@ if(tecla=='v'||tecla=='V'){
 });
 
 function Colisiones(){
-	
+	if(cube_tractor_col.intersectsBox(cube_tractor2_col))
+	{
+		if(direccion_tractor == "izquierda"){
+			move_tractor_izquierda = false;
+		}
+		if(direccion_tractor == "derecha"){
+			move_tractor_derecha = false;
+		}
+		if(direccion_tractor == "arriba"){
+			move_tractor_arriba = false;
+		}
+		if(direccion_tractor == "abajo"){
+			move_tractor_abajo = false;
+		}
+		if(direccion_tractor2 == "izquierda"){
+			move_tractor2_izquierda = false;
+		}
+		if(direccion_tractor2 == "derecha"){
+			move_tractor2_derecha = false;
+		}
+		if(direccion_tractor2 == "arriba"){
+			move_tractor2_arriba = false;
+		}
+		if(direccion_tractor2 == "abajo"){
+			move_tractor2_abajo = false;
+		}
+	}else{
+		move_tractor_abajo = true;
+		move_tractor_arriba = true;
+		move_tractor_derecha = true;
+		move_tractor_izquierda = true;
+		move_tractor2_abajo = true;
+		move_tractor2_arriba = true;
+		move_tractor2_derecha = true;
+		move_tractor2_izquierda = true;
+	}
 	if(cube_tractor_col.intersectsBox(cerca_izquierda_col))
 	{
 		tractor_posicion.x+=1;
