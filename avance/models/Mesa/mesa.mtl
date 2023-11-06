@@ -1,0 +1,62 @@
+newmtl CubeFBXASC046001SG
+illum 4
+Kd 0.11 0.27 0.02
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.03 0.07 0.01
+Ns 23.00
+newmtl CubeSG1
+illum 4
+Kd 0.21 0.07 0.01
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.05 0.02 0.00
+Ns 23.00
+newmtl CubeSG2
+illum 4
+Kd 0.67 0.37 0.16
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.17 0.09 0.04
+Ns 23.00
+newmtl lambert2SG
+illum 4
+Kd 0.54 0.28 0.18
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl leaf
+illum 4
+Kd 0.17 0.09 0.06
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 135.56
+newmtl mesa_bark__i_dunno__i_guess_thats_how_its_called
+illum 4
+Kd 0.28 0.17 0.07
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.00
+newmtl mesa_ceramique
+illum 4
+Kd 0.44 0.08 0.03
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.74
+newmtl mesa_dirt
+illum 4
+Kd 0.09 0.02 0.01
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.00

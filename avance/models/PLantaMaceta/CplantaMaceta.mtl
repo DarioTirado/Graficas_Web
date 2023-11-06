@@ -1,0 +1,102 @@
+newmtl bark__i_dunno__i_guess_thats_how_its_called
+illum 4
+Kd 0.28 0.17 0.07
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.00
+newmtl ceramique
+illum 4
+Kd 0.44 0.08 0.03
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.74
+newmtl dirt
+illum 4
+Kd 0.09 0.02 0.01
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.00
+newmtl leaf
+illum 4
+Kd 0.07 0.24 0.09
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 135.56
+newmtl pasted__bark__i_dunno__i_guess_thats_how_its_called
+illum 4
+Kd 0.28 0.17 0.07
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.00
+newmtl pasted__bark__i_dunno__i_guess_thats_how_its_called2
+illum 4
+Kd 0.28 0.17 0.07
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.00
+newmtl pasted__ceramique
+illum 4
+Kd 0.44 0.08 0.03
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.74
+newmtl pasted__ceramique2
+illum 4
+Kd 0.44 0.08 0.03
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.74
+newmtl pasted__dirt
+illum 4
+Kd 0.09 0.02 0.01
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.00
+newmtl pasted__dirt2
+illum 4
+Kd 0.09 0.02 0.01
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.00
+newmtl pasted__leaf
+illum 4
+Kd 0.07 0.24 0.09
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 135.56
+newmtl pasted__leaf2
+illum 4
+Kd 0.07 0.24 0.09
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 135.56
+newmtl pasted__pasted__lambert2SG
+illum 4
+Kd 0.71 1.00 0.97
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
