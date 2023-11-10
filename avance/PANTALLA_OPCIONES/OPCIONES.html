@@ -1,56 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="estiloopciones.css">
 </head>
+
 <body>
+
+
+    <div class="cuadroopciones">
+
+        <h1 class="dialogoopciones">opciones</h1>
+        <h3 class="dialogoopciones">controles de movimiento Rojo</h3>
+        <div class="contenedorbotones">
+
+            <label class="optionsMenulabel" for="teclaIzquierda">Izquierda:</label>
+            <input class="optionsMenuinput" type="text" id="teclaIzquierda" value="A">
+
+            <label class="optionsMenulabel" for="teclaDerecha">Derecha:</label>
+            <input class="optionsMenuinput" type="text" id="teclaDerecha" value="D">
+
+            <label class="optionsMenulabel" for="teclaArriba">Arriba:</label>
+            <input class="optionsMenuinput" type="text" id="teclaArriba" value="W">
+
+            <label class="optionsMenulabel" for="teclaAbajo">Abajo:</label>
+            <input class="optionsMenuinput" type="text" id="teclaAbajo" value="S">
+
+        
+        </div>
+
+        <h3 class="dialogoopciones">controles de movimiento Verde</h3>
+        <div class="contenedorbotones">
+
+          
+            <label class="optionsMenulabel" for="teclaIzquierda">Izquierda:</label>
+            <input class="optionsMenuinput" type="text" id="teclaIzquierdav" value="A">
+
+            <label class="optionsMenulabel" for="teclaDerecha">Derecha:</label>
+            <input class="optionsMenuinput" type="text" id="teclaDerechav" value="D">
+
+            <label class="optionsMenulabel" for="teclaArriba">Arriba:</label>
+            <input class="optionsMenuinput" type="text" id="teclaArribav" value="W">
+
+            <label class="optionsMenulabel" for="teclaAbajo">Abajo:</label>
+            <input class="optionsMenuinput" type="text" id="teclaAbajov" value="S">
+
+        </div>
+        <h3 class="dialogoopciones">controles de interaccion</h3>
+
+        <div>
+
+            <label class="optionsMenulabel" for="teclaArriba">Interaccion1:</label>
+            <input class="optionsMenuinput" type="text" id="teclaArribav" value="q">
+
+            <label class="optionsMenulabel" for="teclaAbajo">Interaccion2:</label>
+            <input class="optionsMenuinput" type="text" id="teclaAbajov" value="s">
+        </div>
+
+        <br> <button class="button" onclick="guardarOpciones()">Guardar Opciones</button>
+        <a href="/Graficas_Web/avance/jugar.html" type="button" class="button">volver</a>
+    </div>
+    </div>
+
+    <script>
+        // Función para guardar las opciones en localStorage
+        function guardarOpciones() {
+            const teclaIzquierda = document.getElementById('teclaIzquierda').value.toUpperCase();
+            const teclaDerecha = document.getElementById('teclaDerecha').value.toUpperCase();
+            const teclaArriba = document.getElementById('teclaArriba').value.toUpperCase();
+            const teclaAbajo = document.getElementById('teclaAbajo').value.toUpperCase();
     
-
-<div class="cuadroopciones">
-
-<h1 class="dialogoopciones">opciones</h1>
-<h3 class="dialogoopciones">controles de movimiento Rojo</h3>
-<div class="contenedorbotones">
-
-    <button id="teclaArriba"    value="w" type="button" class="button">Cambiar W</button>
-    <button id="teclaIzquierda" value="a" type="button" class="button">Cambiar A</button>
+            const opciones = {
+                teclaIzquierda,
+                teclaDerecha,
+                teclaArriba,
+                teclaAbajo
+            };
     
-    <button id="teclaAbajo"     value="s" type="button" class="button">Cambiar S</button>
-    <button id="tecladerecha"   value="d" type="button" class="button">Cambiar D</button>
-
-</div>
-<h3 class="dialogoopciones">controles de movimiento Verde</h3>
-<div class="contenedorbotones">
-
-    <button  type="button" class="button">Cambiar W</button>
-    <button  type="button" class="button">Cambiar A</button>
+            localStorage.setItem('opciones', JSON.stringify(opciones));
     
-    <button  type="button" class="button">Cambiar S</button>
-    <button  type="button" class="button">Cambiar D</button>
+            alert('Opciones guardadas correctamente.');
+        }
+    </script>
 
-</div>
-<h3 class="dialogoopciones">controles de interaccion</h3>
-
-<div>
-
-    <button  type="button" class="button">Cambiar E</button>
-    <button  type="button" class="button">Cambiar Q</button>
-</div>
-
-
-<div>
-
-
-
-</div>
-
-<a href="/Graficas_Web/avance/jugar.html" type="button" class="button">volver</a>
-</div>
-
-
-<script type="module" src="/avance/main.js"></script>
+  
 </body>
+
 </html>

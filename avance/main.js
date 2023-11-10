@@ -594,44 +594,10 @@ mtlcerca_der.load('models/Cerca/Cerca_1.mtl',function (materials){
   
   });
   //------------------------------ASIGNACION DE CONTROLES--------------------------------------------------//
-  /*
-  let teclaIzquierda = 'a';
-  let teclaDerecha = 'd';
-  let teclaArriba = 'w';
-  let teclaAbajo = 's';
 
-  // Función para actualizar las teclas cuando se cambian en el menú
-  function actualizarTeclas() {
-	  teclaIzquierda = document.getElementById('teclaIzquierda').value.toUpperCase();
-	  teclaDerecha = document.getElementById('teclaDerecha').value.toUpperCase();
-	  teclaArriba = document.getElementById('teclaArriba').value.toUpperCase();
-	  teclaAbajo = document.getElementById('teclaAbajo').value.toUpperCase();
-  }
 
-  // Agrega un evento de cambio a los campos de entrada para actualizar las teclas
-  document.getElementById('teclaIzquierda').addEventListener('input', actualizarTeclas);
-  document.getElementById('teclaDerecha').addEventListener('input', actualizarTeclas);
-  document.getElementById('teclaArriba').addEventListener('input', actualizarTeclas);
-  document.getElementById('teclaAbajo').addEventListener('input', actualizarTeclas);
 
-     document.addEventListener('keydown', function (event) {
-        const tecla = event.key.toUpperCase();
-
-        if (tecla === teclaIzquierda) {
-            // Acciones para la tecla izquierda
-            console.log('Tecla Izquierda Presionada');
-        } else if (tecla === teclaDerecha) {
-            // Acciones para la tecla derecha
-            console.log('Tecla Derecha Presionada');
-        } else if (tecla === teclaArriba) {
-            // Acciones para la tecla arriba
-            console.log('Tecla Arriba Presionada');
-        } else if (tecla === teclaAbajo) {
-            // Acciones para la tecla abajo
-            console.log('Tecla Abajo Presionada');
-        }
-    });
-*/
+// Llama a la función al cargar la página
 
 //-----------------------------------------FUNCIONES-------------------------------------------------------//
 
@@ -827,6 +793,13 @@ const toggleButton = document.getElementById("toggleButton");
 const hiddenText = document.getElementById("hiddenText");
 
 
+	const opcionesGuardadas = localStorage.getItem('opciones');
+
+	if (opcionesGuardadas) {
+		const opciones = JSON.parse(opcionesGuardadas);
+		console.log(tecla, opciones.teclaIzquierda);
+
+
 if(tecla=='p'||tecla=='P'){
 	alert("POSICION:" +cube.position.x + "," + cube.position.z +"," + cube.position.y);
 }
@@ -840,35 +813,36 @@ if(tecla=='e'||tecla=='E'){
 	//cube_tractor.rotation.y=270;
 	direccion_tractor = "arriba";
 }
-if((tecla=='a'||tecla=='A') && move_tractor_izquierda){
+if((tecla.toLowerCase()==opciones.teclaIzquierda.toLowerCase()) && move_tractor_izquierda){
 	//cube.position.x--;
 	tractor_posicion.x-=0.7;
 	tractor_obj.rotation.y=270;
 	direccion_tractor = "izquierda";
 	//cube_tractor.rotation.y=98.8;
 }
-if((tecla=='d'||tecla=='D') && move_tractor_derecha){
+	
+if((tecla.toLowerCase()==opciones.teclaDerecha.toLowerCase()) && move_tractor_derecha){
 	//cube.position.x++;
 	tractor_posicion.x+=0.7;
 	tractor_obj.rotation.y=110;
 	direccion_tractor = "derecha";
 	//cube_tractor.rotation.y=20.41;
 }
-if((tecla=='w'||tecla=='W') && move_tractor_arriba){
+if((tecla.toLowerCase()==opciones.teclaArriba.toLowerCase()) && move_tractor_arriba){
 	//cube.position.z--;
 	tractor_posicion.z-=0.7;
 	tractor_obj.rotation.y=98.8;
 	direccion_tractor = "arriba";
 	//cube_tractor.rotation.y=270;
 }
-if((tecla=='s'||tecla=='S') && move_tractor_abajo){
+if((tecla.toLowerCase()==opciones.teclaAbajo.toLowerCase()) && move_tractor_abajo){
 	//cube.position.z ++;
 	tractor_posicion.z+=0.7;
 	tractor_obj.rotation.y=20.41;
 	direccion_tractor = "abajo";
 	//cube_tractor.rotation.y=110;
 }
-
+	}
 //Jugador 2
 if(tecla=='o'||tecla=='O'){
 	tractor2_posicion.x=9;

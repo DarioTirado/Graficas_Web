@@ -47,8 +47,20 @@ body{
     text-decoration: none;
     
   }
-
   .contenedorbotones{
 
-    display: inline-block; 
-  }
+  display:inline-block;
+}
+  
+
+.optionsMenulabel {
+    margin-bottom: 5px;
+}
+
+.optionsMenuinput {
+    width: 100px; /* Ajusta el ancho según sea necesario */
+    margin-bottom: 10px;
+    border-radius: 3px;
+   
+}
+  
