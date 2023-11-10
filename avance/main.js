@@ -234,6 +234,7 @@ var move_tractor2_izquierda = true;
 var move_tractor2_derecha = true;
 var move_tractor2_arriba = true;
 var move_tractor2_abajo = true;
+//vegetales
 
 mtltrac1.load('models/Tractor/Tractor.mtl',function (materials){
 
@@ -289,7 +290,7 @@ mtlcultivo2.load('models/Cultivo2/cultivo2.mtl',function (materials){
 	  object.rotation.y =110;
 	 
 
-			//scene.add( object );
+			scene.add( object );
 
 		});
 
@@ -313,7 +314,7 @@ mtlmount2.load('models/Mount/mount.mtl',function (materials){
 	  object.rotation.y =116.33;
 	 
 
-			//scene.add( object );
+			scene.add( object );
 
 		});
 
@@ -337,7 +338,7 @@ mtlmount.load('models/Mount/mount.mtl',function (materials){
 	  object.rotation.y =116.33;
 	 
 
-			//scene.add( object );
+			scene.add( object );
 
 		});
 
@@ -361,7 +362,7 @@ mtlcultivo2.load('models/Cultivo2/cultivo2.mtl',function (materials){
 	  object.rotation.y =116.33;
 	 
 
-			//scene.add( object );
+			scene.add( object );
 
 		});
 
@@ -409,7 +410,7 @@ mtlGarnja.load('models/granja/Farm.mtl',function (materials){
 	  object.rotation.y =116.1;
 	
 
-			//scene.add( object );
+			scene.add( object );
 
 		});
 
@@ -592,12 +593,158 @@ mtlcerca_der.load('models/Cerca/Cerca_1.mtl',function (materials){
 	console.log(materials);
   
   });
+  //------------------------------ASIGNACION DE CONTROLES--------------------------------------------------//
+  /*
+  let teclaIzquierda = 'a';
+  let teclaDerecha = 'd';
+  let teclaArriba = 'w';
+  let teclaAbajo = 's';
+
+  // Función para actualizar las teclas cuando se cambian en el menú
+  function actualizarTeclas() {
+	  teclaIzquierda = document.getElementById('teclaIzquierda').value.toUpperCase();
+	  teclaDerecha = document.getElementById('teclaDerecha').value.toUpperCase();
+	  teclaArriba = document.getElementById('teclaArriba').value.toUpperCase();
+	  teclaAbajo = document.getElementById('teclaAbajo').value.toUpperCase();
+  }
+
+  // Agrega un evento de cambio a los campos de entrada para actualizar las teclas
+  document.getElementById('teclaIzquierda').addEventListener('input', actualizarTeclas);
+  document.getElementById('teclaDerecha').addEventListener('input', actualizarTeclas);
+  document.getElementById('teclaArriba').addEventListener('input', actualizarTeclas);
+  document.getElementById('teclaAbajo').addEventListener('input', actualizarTeclas);
+
+     document.addEventListener('keydown', function (event) {
+        const tecla = event.key.toUpperCase();
+
+        if (tecla === teclaIzquierda) {
+            // Acciones para la tecla izquierda
+            console.log('Tecla Izquierda Presionada');
+        } else if (tecla === teclaDerecha) {
+            // Acciones para la tecla derecha
+            console.log('Tecla Derecha Presionada');
+        } else if (tecla === teclaArriba) {
+            // Acciones para la tecla arriba
+            console.log('Tecla Arriba Presionada');
+        } else if (tecla === teclaAbajo) {
+            // Acciones para la tecla abajo
+            console.log('Tecla Abajo Presionada');
+        }
+    });
+*/
+
+//-----------------------------------------FUNCIONES-------------------------------------------------------//
+
+function formatTime(seconds) {
+	const minutos = Math.floor(seconds / 60);
+	const segundos = seconds % 60;
+	return `${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
+}
+
+// Función para actualizar el contador de tiempo cada segundo
+function actualizarContador() {
+	tiempoTranscurrido--;
+	document.getElementById('contadorTiempo').innerText = formatTime(tiempoTranscurrido);
+}
+
+// Inicialización del tiempo y configuración del intervalo
+let tiempoTranscurrido = 20;
+const intervalo = setInterval(actualizarContador, 1000);
 
 
-//-----------------------------------------FUNCIONES--------------------------------------------------------
+
+function clearScene() {
+    for (var i = 0; i < arrySphere.length; i++) {
+        scene.remove(arrySphere[i]);
+    }
+    arrySphere = [];
+}
+//---------------------------OBJETOS RANDOM-------------------------//
+var commonYPosition = -60;
+var arrySphere = [];
+var clock = new THREE.Clock();
+var elapsedTime = 0;
+var entro=true;
+function generateRandomObject() {
+	const zanahoria = new OBJLoader(manager);
+var mtlzanahoria = new MTLLoader(manager);
+for(var i = 0; i<5; i++){
+mtlzanahoria.load('models/Vegetales/carrot.mtl',function (materials){
+
+	materials.preload();
+
+	zanahoria.setMaterials(materials);
+
+	zanahoria.load('models/Vegetales/carrot.obj',
+
+		function ( object2 )  {
+
+      object2.scale.copy( new THREE.Vector3(0.2,0.2,0.2));
+	  object2.position.x =-23;
+	  object2.position.y =-60;
+	  object2.position.z =40;
+	  object2.rotation.y =110;
+
+
+	object2.position.y=commonYPosition;
+	
+	object2.position.x=Math.floor(Math.random()*40-20);
+	object2.position.z=Math.floor(Math.random()*40-5);
+	
+	object2.scale.copy(new THREE.Vector3(0.3,0.03,0.03));
+	
+	arrySphere.push(object2);
+	scene.add( object2 );
+	
+
+	
+
+});
+
+
+console.log(materials);
+});
+}
+}
+
+
+function update() {
+    var deltaTime = clock.getDelta();
+    elapsedTime += deltaTime;
+
+    // Verifica si ha pasado 7 segundos
+	if(tiempoTranscurrido==0){
+		alert("!!Se Acabo El Tiempo!!\n Gana:");
+	}
+    if (elapsedTime > 5) {
+        // Si no ha pasado el tiempo límite, elimina los objetos existentes y genera nuevos objetos
+		
+		elapsedTime = 0;
+		clearScene();
+        generateRandomObject();
+
+		if(elapsedTime>=5){
+			entro=false;
+		}
+
+    } if(entro===false){
+	
+		clearScene();
+        generateRandomObject();
+       
+    }
+
+    // Llama a la función update en el próximo cuadro
+    requestAnimationFrame(update);
+}
+
+// Llama a la función update para comenzar la actualización continua
+update();
+
 
 function animate() {
 	
+
 	//Jugador 1
 	cube_tractor.position.x = tractor_posicion.x;
 	cube_tractor.position.y = tractor_posicion.y;
@@ -681,7 +828,7 @@ const hiddenText = document.getElementById("hiddenText");
 
 
 if(tecla=='p'||tecla=='P'){
-	alert("POSICION:" +cube.position.x + "," + cube.position.z);
+	alert("POSICION:" +cube.position.x + "," + cube.position.z +"," + cube.position.y);
 }
 
 //Jugador 1

@@ -431,8 +431,61 @@ mtlplanta.load('models/planta.mtl',function (materials){
 });
 
 //-----------------------------------------FUNCIONES--------------------------------------------------------
-function Colisiones(){
+
+function formatTime(seconds) {
+	const minutos = Math.floor(seconds / 60);
+	const segundos = seconds % 60;
+	return `${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
+}
+
+// Función para actualizar el contador de tiempo cada segundo
+function actualizarContador() {
+	tiempoTranscurrido--;
+	document.getElementById('contadorTiempo').innerText = formatTime(tiempoTranscurrido);
+}
+
+// Inicialización del tiempo y configuración del intervalo
+let tiempoTranscurrido = 20;
+const intervalo = setInterval(actualizarContador, 1000);
+var entro=true;
+var clock = new THREE.Clock();
+var elapsedTime = 0;
+
+function update() {
+    var deltaTime = clock.getDelta();
+    elapsedTime += deltaTime;
+
+    // Verifica si ha pasado 7 segundos
+	if(tiempoTranscurrido==0){
+		alert("!!Se Acabo El Tiempo!!\n Gana:");
+	}
+    if (elapsedTime > 5) {
+        // Si no ha pasado el tiempo límite, elimina los objetos existentes y genera nuevos objetos
+		
+		elapsedTime = 0;
+		
+
+		if(elapsedTime>=5){
+			entro=false;
+		}
+
+    } if(entro===false){
 	
+       
+    }
+
+    // Llama a la función update en el próximo cuadro
+    requestAnimationFrame(update);
+}
+
+// Llama a la función update para comenzar la actualización continua
+update();
+
+
+
+
+
+function Colisiones(){
 
 }
 function animate() {

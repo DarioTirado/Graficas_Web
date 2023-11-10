@@ -661,7 +661,118 @@ mtlplanta.load('models/planta.mtl',function (materials){
 
 });
 
-//-----------------------------------------FUNCIONES--------------------------------------------------------
+//-----------------------------------------FUNCIONES--------------------------------------------------------//
+
+function formatTime(seconds) {
+	const minutos = Math.floor(seconds / 60);
+	const segundos = seconds % 60;
+	return `${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
+}
+
+// Función para actualizar el contador de tiempo cada segundo
+function actualizarContador() {
+	tiempoTranscurrido--;
+	document.getElementById('contadorTiempo').innerText = formatTime(tiempoTranscurrido);
+}
+
+// Inicialización del tiempo y configuración del intervalo
+let tiempoTranscurrido = 20;
+const intervalo = setInterval(actualizarContador, 1000);
+
+
+function clearScene() {
+    for (var i = 0; i < arrySphere.length; i++) {
+        scene.remove(arrySphere[i]);
+    }
+    arrySphere = [];
+}
+//---------------------------OBJETOS RANDOM-------------------------//
+var commonYPosition = -60;
+var arrySphere = [];
+var clock = new THREE.Clock();
+var elapsedTime = 0;
+var entro=true;
+function generateRandomObject() {
+	const zanahoria = new OBJLoader(manager);
+var mtlzanahoria = new MTLLoader(manager);
+for(var i = 0; i<5; i++){
+mtlzanahoria.load('models/Vegetales/carrot.mtl',function (materials){
+
+	materials.preload();
+
+	zanahoria.setMaterials(materials);
+
+	zanahoria.load('models/Vegetales/carrot.obj',
+
+		function ( object2 )  {
+
+      object2.scale.copy( new THREE.Vector3(0.2,0.2,0.2));
+	  object2.position.x =-23;
+	  object2.position.y =-60;
+	  object2.position.z =40;
+	  object2.rotation.y =110;
+
+
+	object2.position.y=commonYPosition;
+	
+	object2.position.x=Math.floor(Math.random()*40-20);
+	object2.position.z=Math.floor(Math.random()*40-5);
+	
+	object2.scale.copy(new THREE.Vector3(0.3,0.03,0.03));
+	
+	arrySphere.push(object2);
+	scene.add( object2 );
+	
+
+	
+
+});
+
+
+console.log(materials);
+});
+}
+}
+
+
+function update() {
+    var deltaTime = clock.getDelta();
+    elapsedTime += deltaTime;
+
+    // Verifica si ha pasado 7 segundos
+	if(tiempoTranscurrido==0){
+		alert("!!Se Acabo El Tiempo!!\n Gana:");
+	}
+    if (elapsedTime > 5) {
+        // Si no ha pasado el tiempo límite, elimina los objetos existentes y genera nuevos objetos
+		
+		elapsedTime = 0;
+		clearScene();
+        generateRandomObject();
+
+		if(elapsedTime>=5){
+			entro=false;
+		}
+
+    } if(entro===false){
+	
+		clearScene();
+        generateRandomObject();
+       
+    }
+
+    // Llama a la función update en el próximo cuadro
+    requestAnimationFrame(update);
+}
+
+// Llama a la función update para comenzar la actualización continua
+update();
+
+
+
+
+
+
 function Colisiones(){
 	
 
