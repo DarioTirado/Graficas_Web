@@ -37,11 +37,38 @@ manager.onError = function ( url ) {
 };
 
 
+var tractor_posicion = new THREE.Vector3(-11, -60, 35);
+var tractor_obj = new THREE.Object3D();
+
+//Cubos de colision
+const group = new THREE.Group();
+
+const geometry_cube_tractor = new THREE.BoxGeometry( 2.3, 2.3, 2.3 );
+const material_cube_tractor = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
+const cube_tractor = new THREE.Mesh( geometry_cube_tractor, material_cube_tractor );
+cube_tractor.position.set(tractor_posicion.x, tractor_posicion.y, tractor_posicion.z);
+var cube_tractor_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+cube_tractor_col.setFromObject(cube_tractor);
+cube_tractor.visible = false;
+group.add( cube_tractor );
+
+var tractor2_posicion = new THREE.Vector3(9, -60, 35);
+var tractor2_obj = new THREE.Object3D();
+const geometry_cube_tractor2 = new THREE.BoxGeometry( 2.3, 2.3, 2.3 );
+const material_cube_tractor2 = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
+const cube_tractor2 = new THREE.Mesh( geometry_cube_tractor2, material_cube_tractor2 );
+cube_tractor2.position.set(tractor2_posicion.x, tractor2_posicion.y, tractor2_posicion.z);
+var cube_tractor2_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+cube_tractor2_col.setFromObject(cube_tractor2);
+cube_tractor2.visible = false;
+group.add( cube_tractor2 );
+
+
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-const group = new THREE.Group();
+
 
 const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 const material = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
@@ -174,7 +201,17 @@ const plan1 = new OBJLoader(manager);
 var mtlplan1 = new MTLLoader(manager);
 const plan2 = new OBJLoader(manager);
 var mtlplan2 = new MTLLoader(manager);
-
+//Colisiones_variables
+var direccion_tractor;
+var move_tractor_izquierda = true;
+var move_tractor_derecha = true;
+var move_tractor_arriba = true;
+var move_tractor_abajo = true;
+var direccion_tractor2;
+var move_tractor2_izquierda = true;
+var move_tractor2_derecha = true;
+var move_tractor2_arriba = true;
+var move_tractor2_abajo = true;
 
 mtlmesa1.load('models/Mesa/mesa.mtl',function (materials){
 
@@ -551,6 +588,8 @@ mtltrac1.load('models/Tractor/Tractor.mtl',function (materials){
 			object1.position.set(-11, -60, 35);
 			object1.rotation.y = 98.8;
 			scene.add(object1);
+			tractor_obj = object;
+
 		});
 
 	console.log(materials);
@@ -570,8 +609,9 @@ mtltrac2.load('models/Tractor/Tractor2.mtl',function (materials){
 	  object2.position.set(9, -60, 35);
 	  object2.rotation.y =98.8;
 	   scene.add( object2 );
+	   tractor2_obj = object;
 
-});
+		});
 
 	console.log(materials);
 });
@@ -773,18 +813,39 @@ update();
 
 
 
-function Colisiones(){
+
 	
 
-}
+
 function animate() {
+
 	
+	//Jugador 1
+	cube_tractor.position.x = tractor_posicion.x;
+	cube_tractor.position.y = tractor_posicion.y;
+	cube_tractor.position.z = tractor_posicion.z;
+
+	tractor_obj.position.x = tractor_posicion.x;
+	tractor_obj.position.y = tractor_posicion.y;
+	tractor_obj.position.z = tractor_posicion.z;
+
+	//Jugador 2
+	cube_tractor2.position.x = tractor2_posicion.x;
+	cube_tractor2.position.y = tractor2_posicion.y;
+	cube_tractor2.position.z = tractor2_posicion.z;
+
+	tractor2_obj.position.x = tractor2_posicion.x;
+	tractor2_obj.position.y = tractor2_posicion.y;
+	tractor2_obj.position.z = tractor2_posicion.z;
+
+	cube_tractor_col.setFromObject(cube_tractor);
+	cube_tractor_col.copy(cube_tractor.geometry.boundingBox).applyMatrix4(cube_tractor.matrixWorld);
+	cube_tractor2_col.setFromObject(cube_tractor2);
+	cube_tractor2_col.copy(cube_tractor2.geometry.boundingBox).applyMatrix4(cube_tractor2.matrixWorld);
+
+	Colisiones();
+
 	requestAnimationFrame( animate );
-
-	//cube.rotation.x += 0.01;
-	//cube.rotation.y += 0.01;
-
-
 	
 
 	renderer.render( scene, camera );
@@ -809,64 +870,64 @@ if(tecla=='p'||tecla=='P'){
 }
 
 //Jugador 1
-if(tecla=='a'||tecla=='A'){
+if((tecla=='a'||tecla=='A')&& move_tractor_izquierda){
 	//cube.position.x--;
-	if (object1) {
-		object1.position.x-=0.7;
-		object1.rotation.y=270;
-	} 
+	tractor_posicion.x-=0.7;
+	tractor_obj.rotation.y=270;
+	direccion_tractor = "izquierda";
 }
-if(tecla=='d'||tecla=='D'){
+if((tecla=='d'||tecla=='D') && move_tractor_derecha){
 	//cube.position.x++;
-	if (object1) {
-		object1.position.x+=0.7;
-		object1.rotation.y=110;
-	} 
+	tractor_posicion.x+=0.7;
+	tractor_obj.rotation.y=110;
+	direccion_tractor = "derecha";
 }
-if(tecla=='w'||tecla=='W'){
+if((tecla=='w'||tecla=='W')&& move_tractor_arriba){
 	//cube.position.z--;
-	if (object1) {
-		object1.position.z-=0.7;
-		object1.rotation.y=98.8;
-	} 
+	tractor_posicion.z-=0.7;
+	tractor_obj.rotation.y=98.8;
+	direccion_tractor = "arriba";
 }
-if(tecla=='s'||tecla=='S'){
+if((tecla=='s'||tecla=='S')&& move_tractor_abajo){
 	//cube.position.z ++;
-	if (object1) {
-		object1.position.z+=0.7;
-		object1.rotation.y=20.41;
-	} 
+	tractor_posicion.z+=0.7;
+	tractor_obj.rotation.y=20.41;
+	direccion_tractor = "abajo";
 }
 
 //Jugador 2
-if(tecla=='j'||tecla=='J'){
+if(tecla=='o'||tecla=='O'){
+	tractor2_posicion.x=9;
+	tractor2_posicion.z=35;
+	tractor2_obj.rotation.y=98.8;
+	direccion_tractor2 = "arriba";
+}
+if((tecla=='j'||tecla=='J') && move_tractor2_izquierda){
 	//cube.position.x--;
-	if (object2) {
-		object2.position.x-=0.7;
-		object2.rotation.y=270;
-	} 
+	tractor2_posicion.x-=0.7;
+	tractor2_obj.rotation.y=270;
+	direccion_tractor2 = "izquierda";
 }
-if(tecla=='l'||tecla=='L'){
+if((tecla=='l'||tecla=='L') && move_tractor2_derecha){
 	//cube.position.x++;
-	if (object2) {
-		object2.position.x+=0.7;
-		object2.rotation.y=110;
-	} 
+	tractor2_posicion.x+=0.7;
+	tractor2_obj.rotation.y=110;
+	direccion_tractor2 = "derecha";
 }
-if(tecla=='i'||tecla=='I'){
+if((tecla=='i'||tecla=='I') && move_tractor2_arriba){
 	//cube.position.z--;
-	if (object2) {
-		object2.position.z-=0.7;
-		object2.rotation.y=98.8;
-	} 
+	tractor2_posicion.z-=0.7;
+	tractor2_obj.rotation.y=98.8;
+	direccion_tractor2 = "arriba";
 }
-if(tecla=='k'||tecla=='K'){
+if((tecla=='k'||tecla=='K') && move_tractor2_abajo){
 	//cube.position.z ++;
-	if (object2) {
-		object2.position.z+=0.7;
-		object2.rotation.y=20.41;
-	} 
+	tractor2_posicion.z+=0.7;
+	tractor2_obj.rotation.y=20.41;
+	direccion_tractor2 = "abajo";
 }
+
+
 
 if(tecla=='c'||tecla=='C' ){
 	if(al.intensity<1)
@@ -886,6 +947,50 @@ if(tecla=='v'||tecla=='V'){
 
 
 });
+
+
+function Colisiones(){
+	if(cube_tractor_col.intersectsBox(cube_tractor2_col))
+	{
+		if(direccion_tractor == "izquierda"){
+			move_tractor_izquierda = false;
+		}
+		if(direccion_tractor == "derecha"){
+			move_tractor_derecha = false;
+		}
+		if(direccion_tractor == "arriba"){
+			move_tractor_arriba = false;
+		}
+		if(direccion_tractor == "abajo"){
+			move_tractor_abajo = false;
+		}
+		if(direccion_tractor2 == "izquierda"){
+			move_tractor2_izquierda = false;
+		}
+		if(direccion_tractor2 == "derecha"){
+			move_tractor2_derecha = false;
+		}
+		if(direccion_tractor2 == "arriba"){
+			move_tractor2_arriba = false;
+		}
+		if(direccion_tractor2 == "abajo"){
+			move_tractor2_abajo = false;
+		}
+	}else{
+		move_tractor_abajo = true;
+		move_tractor_arriba = true;
+		move_tractor_derecha = true;
+		move_tractor_izquierda = true;
+		move_tractor2_abajo = true;
+		move_tractor2_arriba = true;
+		move_tractor2_derecha = true;
+		move_tractor2_izquierda = true;
+	}
+	
+}
+
+
+
 
 function iniciarSesion(nombre, contra){
 alert(nombre, contra);
