@@ -400,17 +400,17 @@ mtlCplantasmacet.load('models/PlantaMaceta/CplantaMaceta.mtl',function (material
 	console.log(materials);
 });
 
-mtltomates2.load('models/tomates/tomates.mtl',function (materials){
+mtltomates2.load('models/Mesa/mesa.mtl',function (materials){
 
 	materials.preload();
 
 	tomates2.setMaterials(materials);
 
-	tomates2.load('models/tomates/tomates.obj',
+	tomates2.load('models/Mesa/mesa.obj',
 
 		function ( object ) {
 			object=object;
-			object.scale.copy(new THREE.Vector3(0.3, 0.3, 0.3));
+			object.scale.copy(new THREE.Vector3(0.9, 0.9, 0.9));
 			object.position.set(17, -60, 30);
 			object.rotation.y = 0;
 			scene.add(object);
@@ -419,17 +419,17 @@ mtltomates2.load('models/tomates/tomates.mtl',function (materials){
 	console.log(materials);
 });
 
-mtltomates1.load('models/tomates/tomates.mtl',function (materials){
+mtltomates1.load('models/PlantaMaceta/CplantaMaceta.mtl',function (materials){
 
 	materials.preload();
 
 	tomates1.setMaterials(materials);
 
-	tomates1.load('models/tomates/tomates.obj',
+	tomates1.load('models/PlantaMaceta/CplantaMaceta.obj',
 
 		function ( object ) {
 			object=object;
-			object.scale.copy(new THREE.Vector3(0.3, 0.3, 0.3));
+			object.scale.copy(new THREE.Vector3(0.6, 0.6, 0.6));
 			object.position.set(17, -60, 35);
 			object.rotation.y = 0;
 			scene.add(object);
@@ -438,17 +438,17 @@ mtltomates1.load('models/tomates/tomates.mtl',function (materials){
 	console.log(materials);
 });
 
-mtltomates.load('models/tomates/tomates.mtl',function (materials){
+mtltomates.load('models/PlantaMaceta/CplantaMaceta.mtl',function (materials){
 
 	materials.preload();
 
 	tomates.setMaterials(materials);
 
-	tomates.load('models/tomates/tomates.obj',
+	tomates.load('models/PlantaMaceta/CplantaMaceta.obj',
 
 		function ( object ) {
 			object=object;
-			object.scale.copy(new THREE.Vector3(0.3, 0.3, 0.3));
+			object.scale.copy(new THREE.Vector3(0.6, 0.6, 0.6));
 			object.position.set(17, -60, 40);
 			object.rotation.y = 0;
 			scene.add(object);
