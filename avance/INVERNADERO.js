@@ -63,6 +63,98 @@ cube_tractor2_col.setFromObject(cube_tractor2);
 cube_tractor2.visible = false;
 group.add( cube_tractor2 );
 
+//--------Lado izquierdo domo protección
+const geometry_cube_domo_izquierdo = new THREE.BoxGeometry( 2, 2, 25 );
+const material_cube_domo_izquierdo = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
+const cube_domo_izquierdo = new THREE.Mesh( geometry_cube_domo_izquierdo, material_cube_domo_izquierdo );
+cube_domo_izquierdo.position.x= -19;
+cube_domo_izquierdo.position.y= -60;
+cube_domo_izquierdo.position.z= 32;
+var cube_domo_izquierdo_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+cube_domo_izquierdo_col.setFromObject(cube_domo_izquierdo);
+cube_domo_izquierdo.visible = false;
+group.add( cube_domo_izquierdo );
+
+const geometry_cube_plantasmacet2 = new THREE.BoxGeometry( 5, 4, 13 );
+const material_cube_plantasmacet2 = new THREE.MeshPhongMaterial( { color: 0x0000FF } );
+const cube_plantasmacet2 = new THREE.Mesh( geometry_cube_plantasmacet2, material_cube_plantasmacet2 );
+cube_plantasmacet2.position.x= -16.1;
+cube_plantasmacet2.position.y= -60;
+cube_plantasmacet2.position.z= 22;
+var cube_plantasmacet2_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+cube_plantasmacet2_col.setFromObject(cube_plantasmacet2);
+cube_plantasmacet2.visible = false;
+group.add( cube_plantasmacet2 );
+
+//--------Lado arriba domo protección
+const geometry_cube_domo_arriba = new THREE.BoxGeometry( 26, 2, 2 );
+const material_cube_domo_arriba = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
+const cube_domo_arriba = new THREE.Mesh( geometry_cube_domo_arriba, material_cube_domo_arriba );
+cube_domo_arriba.position.x= -1;
+cube_domo_arriba.position.y= -60;
+cube_domo_arriba.position.z= 16;
+var cube_domo_arriba_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+cube_domo_arriba_col.setFromObject(cube_domo_arriba);
+cube_domo_arriba.visible = false;
+group.add( cube_domo_arriba );
+
+//--------Lado derecha domo protección
+const geometry_cube_plantasmacet = new THREE.BoxGeometry( 5, 4, 13 );
+const material_cube_plantasmacet = new THREE.MeshPhongMaterial( { color: 0x0000FF } );
+const cube_plantasmacet = new THREE.Mesh( geometry_cube_plantasmacet, material_cube_plantasmacet );
+cube_plantasmacet.position.x= 16;
+cube_plantasmacet.position.y= -60;
+cube_plantasmacet.position.z= 20;
+var cube_plantasmacet_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+cube_plantasmacet_col.setFromObject(cube_plantasmacet);
+cube_plantasmacet.visible = false;
+group.add( cube_plantasmacet );
+
+const geometry_cube_domo_derecha = new THREE.BoxGeometry( 2, 2, 25 );
+const material_cube_domo_derecha = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
+const cube_domo_derecha = new THREE.Mesh( geometry_cube_domo_derecha, material_cube_domo_derecha );
+cube_domo_derecha.position.x= 17;
+cube_domo_derecha.position.y= -60;
+cube_domo_derecha.position.z= 35;
+var cube_domo_derecha_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+cube_domo_derecha_col.setFromObject(cube_domo_derecha);
+cube_domo_derecha.visible = false;
+group.add( cube_domo_derecha );
+
+//--------Lado abajo domo protección
+const geometry_cube_domo_abajo = new THREE.BoxGeometry( 4, 4, 10 );
+const material_cube_domo_abajo = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
+const cube_domo_abajo = new THREE.Mesh( geometry_cube_domo_abajo, material_cube_domo_abajo );
+cube_domo_abajo.position.x= -3;
+cube_domo_abajo.position.y= -60;
+cube_domo_abajo.position.z= 44;
+var cube_domo_abajo_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+cube_domo_abajo_col.setFromObject(cube_domo_abajo);
+cube_domo_abajo.visible = false;
+group.add( cube_domo_abajo );
+
+const geometry_cube_domo_abajo2 = new THREE.BoxGeometry( 4.4, 4, 5 );
+const material_cube_domo_abajo2 = new THREE.MeshPhongMaterial( { color: 0x0000FF } );
+const cube_domo_abajo2 = new THREE.Mesh( geometry_cube_domo_abajo2, material_cube_domo_abajo2 );
+cube_domo_abajo2.position.x= 1.5;
+cube_domo_abajo2.position.y= -60;
+cube_domo_abajo2.position.z= 43;
+var cube_domo_abajo2_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+cube_domo_abajo2_col.setFromObject(cube_domo_abajo2);
+cube_domo_abajo2.visible = false;
+group.add( cube_domo_abajo2 );
+
+const geometry_cube_domo_abajo3 = new THREE.BoxGeometry( 31, 2, 2);
+const material_cube_domo_abajo3 = new THREE.MeshPhongMaterial( { color: 0x0000FF } );
+const cube_domo_abajo3 = new THREE.Mesh( geometry_cube_domo_abajo3, material_cube_domo_abajo3 );
+cube_domo_abajo3.position.x= -1;
+cube_domo_abajo3.position.y= -60;
+cube_domo_abajo3.position.z= 44.5;
+var cube_domo_abajo3_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+cube_domo_abajo3_col.setFromObject(cube_domo_abajo3);
+cube_domo_abajo3.visible = false;
+group.add( cube_domo_abajo3 );
+//--------------------------------------------------
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -176,14 +268,10 @@ const maceta = new OBJLoader(manager);
 var mtlmaceta = new MTLLoader(manager);
 const maceta1 = new OBJLoader(manager);
 var mtlmaceta1 = new MTLLoader(manager);
-const maceta2 = new OBJLoader(manager);
-var mtlmaceta2 = new MTLLoader(manager);
 const maceta3 = new OBJLoader(manager);
 var mtlmaceta3 = new MTLLoader(manager);
 const maceta4 = new OBJLoader(manager);
 var mtlmaceta4 = new MTLLoader(manager);
-const maceta5 = new OBJLoader(manager);
-var mtlmaceta5 = new MTLLoader(manager);
 //mesa
 const mesa = new OBJLoader(manager);
 var mtlmesa = new MTLLoader(manager);
@@ -213,6 +301,7 @@ var move_tractor2_derecha = true;
 var move_tractor2_arriba = true;
 var move_tractor2_abajo = true;
 
+//----------------------------Lado izquierdo domo
 mtlmesa1.load('models/Mesa/mesa.mtl',function (materials){
 
 	materials.preload();
@@ -226,25 +315,6 @@ mtlmesa1.load('models/Mesa/mesa.mtl',function (materials){
 			object.scale.copy(new THREE.Vector3(0.8, 0.8, 0.8));
 			object.position.set(-19, -60, 38);
 			object.rotation.y = 0;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
-mtlplan1.load('models/Plantas_Nuevas/planta2.mtl',function (materials){
-
-	materials.preload();
-
-	plan1.setMaterials(materials);
-
-	plan1.load('models/Plantas_Nuevas/planta2.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(0.6, 0.6, 0.6));
-			object.position.set(3, -60, 42);
-			object.rotation.y = 1.5;
 			scene.add(object);
 		});
 
@@ -270,25 +340,6 @@ mtlplan1.load('models/Plantas_Nuevas/planta1.mtl',function (materials){
 	console.log(materials);
 });
 
-mtlCplantasmacet3.load('models/PlantaMaceta/CplantaMaceta.mtl',function (materials){
-
-	materials.preload();
-
-	Cplantasmaceta3.setMaterials(materials);
-
-	Cplantasmaceta3.load('models/PlantaMaceta/CplantaMaceta.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(0.6, 0.6, 0.6));
-			object.position.set(-4, -60, 45);
-			object.rotation.y = 1.5;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
 mtlCplantasmacet2.load('models/PlantaMaceta/CplantaMaceta.mtl',function (materials){
 
 	materials.preload();
@@ -298,7 +349,6 @@ mtlCplantasmacet2.load('models/PlantaMaceta/CplantaMaceta.mtl',function (materia
 	Cplantasmaceta2.load('models/PlantaMaceta/CplantaMaceta.obj',
 
 		function ( object ) {
-			object=object;
 			object.scale.copy(new THREE.Vector3(0.9, 0.9, 0.9));
 			object.position.set(-17, -60, 28);
 			object.rotation.y = 1.5;
@@ -308,24 +358,7 @@ mtlCplantasmacet2.load('models/PlantaMaceta/CplantaMaceta.mtl',function (materia
 	console.log(materials);
 });
 
-mtlCplantasmacet.load('models/PlantaMaceta/CplantaMaceta.mtl',function (materials){
-
-	materials.preload();
-
-	Cplantasmaceta.setMaterials(materials);
-
-	Cplantasmaceta.load('models/PlantaMaceta/CplantaMaceta.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(0.9, 0.9, 0.9));
-			object.position.set(14, -60, 26);
-			object.rotation.y = 1.5;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
+//----------------------------Lado arriba del domo
 
 mtlmesa.load('models/Mesa/mesa.mtl',function (materials){
 
@@ -346,114 +379,21 @@ mtlmesa.load('models/Mesa/mesa.mtl',function (materials){
 	console.log(materials);
 });
 
-mtlmaceta5.load('models/Maceta/maceta.mtl',function (materials){
+//----------------------------Lado derecha  domo
+
+mtlCplantasmacet.load('models/PlantaMaceta/CplantaMaceta.mtl',function (materials){
 
 	materials.preload();
 
-	maceta5.setMaterials(materials);
+	Cplantasmaceta.setMaterials(materials);
 
-	maceta5.load('models/Maceta/maceta.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(0.1, 0.1, 0.1));
-			object.position.set(-4, -60, 38);
-			object.rotation.y = 0;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
-mtlmaceta4.load('models/Maceta/maceta.mtl',function (materials){
-
-	materials.preload();
-
-	maceta4.setMaterials(materials);
-
-	maceta4.load('models/Maceta/maceta.obj',
+	Cplantasmaceta.load('models/PlantaMaceta/CplantaMaceta.obj',
 
 		function ( object ) {
 			object=object;
-			object.scale.copy(new THREE.Vector3(0.1, 0.1, 0.1));
-			object.position.set(-4, -60, 40);
-			object.rotation.y = 0;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
-mtlmaceta3.load('models/Maceta/maceta.mtl',function (materials){
-
-	materials.preload();
-
-	maceta3.setMaterials(materials);
-
-	maceta3.load('models/Maceta/maceta.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(0.1, 0.1, 0.1));
-			object.position.set(-4, -60, 42);
-			object.rotation.y = 0;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
-mtlmaceta2.load('models/Maceta/maceta.mtl',function (materials){
-
-	materials.preload();
-
-	maceta2.setMaterials(materials);
-
-	maceta2.load('models/Maceta/maceta.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(0.1, 0.1, 0.1));
-			object.position.set(-2, -60, 38);
-			object.rotation.y = 0;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
-mtlmaceta1.load('models/Maceta/maceta.mtl',function (materials){
-
-	materials.preload();
-
-	maceta1.setMaterials(materials);
-
-	maceta1.load('models/Maceta/maceta.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(0.1, 0.1, 0.1));
-			object.position.set(-2, -60, 40);
-			object.rotation.y = 0;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
-mtlmaceta.load('models/Maceta/maceta.mtl',function (materials){
-
-	materials.preload();
-
-	maceta.setMaterials(materials);
-
-	maceta.load('models/Maceta/maceta.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(0.1, 0.1, 0.1));
-			object.position.set(-2, -60, 42);
-			object.rotation.y = 0;
+			object.scale.copy(new THREE.Vector3(0.9, 0.9, 0.9));
+			object.position.set(14, -60, 26);
+			object.rotation.y = 1.5;
 			scene.add(object);
 		});
 
@@ -516,6 +456,123 @@ mtltomates.load('models/tomates/tomates.mtl',function (materials){
 
 	console.log(materials);
 });
+
+//----------------------------Lado abajo del domo
+
+mtlplan1.load('models/Plantas_Nuevas/planta2.mtl',function (materials){
+
+	materials.preload();
+
+	plan1.setMaterials(materials);
+
+	plan1.load('models/Plantas_Nuevas/planta2.obj',
+
+		function ( object ) {
+			object=object;
+			object.scale.copy(new THREE.Vector3(0.6, 0.6, 0.6));
+			object.position.set(3, -60, 42);
+			object.rotation.y = 1.5;
+			scene.add(object);
+		});
+
+	console.log(materials);
+});
+
+mtlCplantasmacet3.load('models/PlantaMaceta/CplantaMaceta.mtl',function (materials){
+
+	materials.preload();
+
+	Cplantasmaceta3.setMaterials(materials);
+
+	Cplantasmaceta3.load('models/PlantaMaceta/CplantaMaceta.obj',
+
+		function ( object ) {
+			object=object;
+			object.scale.copy(new THREE.Vector3(0.6, 0.6, 0.6));
+			object.position.set(-4, -60, 45);
+			object.rotation.y = 1.5;
+			scene.add(object);
+		});
+
+	console.log(materials);
+});
+
+mtlmaceta4.load('models/Maceta/maceta.mtl',function (materials){
+
+	materials.preload();
+
+	maceta4.setMaterials(materials);
+
+	maceta4.load('models/Maceta/maceta.obj',
+
+		function ( object ) {
+			object=object;
+			object.scale.copy(new THREE.Vector3(0.1, 0.1, 0.1));
+			object.position.set(-4, -60, 40);
+			object.rotation.y = 0;
+			scene.add(object);
+		});
+
+	console.log(materials);
+});
+
+mtlmaceta3.load('models/Maceta/maceta.mtl',function (materials){
+
+	materials.preload();
+
+	maceta3.setMaterials(materials);
+
+	maceta3.load('models/Maceta/maceta.obj',
+
+		function ( object ) {
+			object=object;
+			object.scale.copy(new THREE.Vector3(0.1, 0.1, 0.1));
+			object.position.set(-4, -60, 42);
+			object.rotation.y = 0;
+			scene.add(object);
+		});
+
+	console.log(materials);
+});
+
+mtlmaceta1.load('models/Maceta/maceta.mtl',function (materials){
+
+	materials.preload();
+
+	maceta1.setMaterials(materials);
+
+	maceta1.load('models/Maceta/maceta.obj',
+
+		function ( object ) {
+			object=object;
+			object.scale.copy(new THREE.Vector3(0.1, 0.1, 0.1));
+			object.position.set(-2, -60, 40);
+			object.rotation.y = 0;
+			scene.add(object);
+		});
+
+	console.log(materials);
+});
+
+mtlmaceta.load('models/Maceta/maceta.mtl',function (materials){
+
+	materials.preload();
+
+	maceta.setMaterials(materials);
+
+	maceta.load('models/Maceta/maceta.obj',
+
+		function ( object ) {
+			object=object;
+			object.scale.copy(new THREE.Vector3(0.1, 0.1, 0.1));
+			object.position.set(-2, -60, 42);
+			object.rotation.y = 0;
+			scene.add(object);
+		});
+
+	console.log(materials);
+});
+//----------------------------------------
 
 mtlarbol2.load('models/Arbol1/Arbol1.mtl',function (materials){
 
@@ -950,6 +1007,7 @@ if(tecla=='v'||tecla=='V'){
 
 
 function Colisiones(){
+	//Colision entre tractores
 	if(cube_tractor_col.intersectsBox(cube_tractor2_col))
 	{
 		if(direccion_tractor == "izquierda"){
@@ -986,7 +1044,120 @@ function Colisiones(){
 		move_tractor2_derecha = true;
 		move_tractor2_izquierda = true;
 	}
-	
+	//Colision parte izquierda domo
+	if(cube_tractor_col.intersectsBox(cube_domo_izquierdo_col))
+	{
+		tractor_posicion.x+=1;
+	}
+	if(cube_tractor2_col.intersectsBox(cube_domo_izquierdo_col))
+	{
+		tractor2_posicion.x+=1;
+	}
+	if(cube_tractor_col.intersectsBox(cube_plantasmacet2_col))
+	{
+		if(direccion_tractor == "izquierda"){
+			tractor_posicion.x+=1;
+		}
+		if(direccion_tractor == "arriba"){
+			tractor_posicion.z+=1;
+		}
+	}
+	if(cube_tractor2_col.intersectsBox(cube_plantasmacet2_col))
+	{
+		if(direccion_tractor2 == "izquierda"){
+			tractor2_posicion.x+=1;
+		}
+		if(direccion_tractor2 == "arriba"){
+			tractor2_posicion.z+=1;
+		}
+	}
+	//Colision parte arriba domo
+	if(cube_tractor_col.intersectsBox(cube_domo_arriba_col))
+	{
+		tractor_posicion.z+=1;
+	}
+	if(cube_tractor2_col.intersectsBox(cube_domo_arriba_col))
+	{
+		tractor2_posicion.z+=1;
+	}
+	//Colision parte derecha domo
+	if(cube_tractor_col.intersectsBox(cube_domo_derecha_col))
+	{
+		tractor_posicion.x-=1;
+	}
+	if(cube_tractor2_col.intersectsBox(cube_domo_derecha_col))
+	{
+		tractor2_posicion.x-=1;
+	}
+	if(cube_tractor_col.intersectsBox(cube_plantasmacet_col))
+	{
+		if(direccion_tractor == "derecha"){
+			tractor_posicion.x-=1;
+		}
+		if(direccion_tractor == "arriba"){
+			tractor_posicion.z+=1;
+		}
+	}
+	if(cube_tractor2_col.intersectsBox(cube_plantasmacet_col))
+	{
+		if(direccion_tractor2 == "derecha"){
+			tractor2_posicion.x-=1;
+		}
+		if(direccion_tractor2 == "arriba"){
+			tractor2_posicion.z+=1;
+		}
+	}
+	//Colision parte abajo domo
+	if(cube_tractor_col.intersectsBox(cube_domo_abajo_col))
+	{
+		if(direccion_tractor == "izquierda"){
+			tractor_posicion.x+=1;
+		}
+		if(direccion_tractor == "derecha"){
+			tractor_posicion.x-=1;
+		}
+		if(direccion_tractor == "abajo"){
+			tractor_posicion.z-=1;
+		}
+	}
+	if(cube_tractor2_col.intersectsBox(cube_domo_abajo_col))
+	{
+		if(direccion_tractor2 == "izquierda"){
+			tractor2_posicion.x+=1;
+		}
+		if(direccion_tractor2 == "derecha"){
+			tractor2_posicion.x-=1;
+		}
+		if(direccion_tractor2 == "abajo"){
+			tractor2_posicion.z-=1;
+		}
+	}
+	if(cube_tractor_col.intersectsBox(cube_domo_abajo2_col))
+	{
+		if(direccion_tractor == "izquierda"){
+			tractor_posicion.x+=1;
+		}
+		if(direccion_tractor == "abajo"){
+			tractor_posicion.z-=1;
+		}
+	}
+	if(cube_tractor2_col.intersectsBox(cube_domo_abajo2_col))
+	{
+		if(direccion_tractor2 == "izquierda"){
+			tractor2_posicion.x+=1;
+		}
+		if(direccion_tractor2 == "abajo"){
+			tractor2_posicion.z-=1;
+		}
+	}
+	if(cube_tractor_col.intersectsBox(cube_domo_abajo3_col))
+	{
+		tractor_posicion.z-=1;
+	}
+	if(cube_tractor2_col.intersectsBox(cube_domo_abajo3_col))
+	{
+		tractor2_posicion.z-=1;
+	}
 }
 
 

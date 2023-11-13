@@ -435,7 +435,7 @@ mtlMolino.load('models/Molino/Molino.mtl',function (materials){
 	  object.rotation.y =116.1;
 	
 
-			//scene.add( object );
+			scene.add( object );
 
 		});
 
@@ -496,7 +496,7 @@ mtlplanta.load('models/planta.mtl',function (materials){
 	object.position.z =0.0;
   
 
-		  //scene.add( object );
+		  scene.add( object );
 
 	  });
 
