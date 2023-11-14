@@ -759,6 +759,7 @@ mtlplanta.load('models/planta.mtl',function (materials){
 });
 
 //-----------------------------------------FUNCIONES--------------------------------------------------------//
+var objectBoundingBoxes = [];
 
 function formatTime(seconds) {
 	const minutos = Math.floor(seconds / 60);
@@ -780,8 +781,10 @@ const intervalo = setInterval(actualizarContador, 1000);
 function clearScene() {
     for (var i = 0; i < arrySphere.length; i++) {
         scene.remove(arrySphere[i]);
+		scene.remove(objectBoundingBoxes[i]);
     }
     arrySphere = [];
+	objectBoundingBoxes = [];
 }
 //---------------------------OBJETOS RANDOM-------------------------//
 var commonYPosition = -60;
@@ -789,11 +792,14 @@ var arrySphere = [];
 var clock = new THREE.Clock();
 var elapsedTime = 0;
 var entro=true;
+
+
 function generateRandomObject() {
 	const zanahoria = new OBJLoader(manager);
 var mtlzanahoria = new MTLLoader(manager);
-for(var i = 0; i<5; i++){
-mtlzanahoria.load('models/Vegetales/carrot.mtl',function (materials){
+
+	for(var i = 0; i<5; i++){
+	mtlzanahoria.load('models/Vegetales/carrot.mtl',function (materials){
 
 	materials.preload();
 
@@ -818,6 +824,11 @@ mtlzanahoria.load('models/Vegetales/carrot.mtl',function (materials){
 	object2.scale.copy(new THREE.Vector3(0.3,0.03,0.03));
 	
 	arrySphere.push(object2);
+
+
+	var boundingBox = new THREE.Box3().setFromObject(object2);
+	objectBoundingBoxes.push(boundingBox);
+
 	scene.add( object2 );
 	
 
@@ -1007,6 +1018,21 @@ if(tecla=='v'||tecla=='V'){
 
 
 function Colisiones(){
+
+	for (var i = 0; i < arrySphere.length; i++) {
+        // Verifica si la caja delimitadora del tractor y la del objeto están definidas antes de realizar la comprobación de intersección
+        if (cube_tractor_col && objectBoundingBoxes[i]) {
+            if (cube_tractor_col.intersectsBox(objectBoundingBoxes[i])) {
+                // Colisión detectada entre el tractor y el objeto aleatorio, manejarla según sea necesario
+                console.log('Colisión entre el tractor y el objeto', i);
+				arrySphere[i].position.y = 50;
+				// Actualiza la caja delimitadora del objeto aleatorio con su nueva posición
+                objectBoundingBoxes[i].setFromObject(arrySphere[i])
+            }
+        }
+    }
+
+
 	//Colision entre tractores
 	if(cube_tractor_col.intersectsBox(cube_tractor2_col))
 	{
