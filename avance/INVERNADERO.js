@@ -760,6 +760,8 @@ mtlplanta.load('models/planta.mtl',function (materials){
 
 //-----------------------------------------FUNCIONES--------------------------------------------------------//
 var objectBoundingBoxes = [];
+var PUNTUACIONJ1 = 0;
+var PUNTUACIONJ2 = 0;
 
 function formatTime(seconds) {
 	const minutos = Math.floor(seconds / 60);
@@ -849,7 +851,15 @@ function update() {
 
     // Verifica si ha pasado 7 segundos
 	if(tiempoTranscurrido==0){
-		alert("!!Se Acabo El Tiempo!!\n Gana:");
+		if(PUNTUACIONJ1>PUNTUACIONJ2){
+		alert("!!Se Acabo El Tiempo!!\n Gana: Tractor Verde");
+		}
+		if(PUNTUACIONJ1<PUNTUACIONJ2){
+			alert("!!Se Acabo El Tiempo!!\n Gana: Tractor Rojo");
+			}
+			if(PUNTUACIONJ1==0 && PUNTUACIONJ2 ==0){
+				alert("!!Se Acabo El Tiempo!!\n Hay Un Empate");
+				}
 	}
     if (elapsedTime > 5) {
         // Si no ha pasado el tiempo límite, elimina los objetos existentes y genera nuevos objetos
@@ -1020,14 +1030,39 @@ if(tecla=='v'||tecla=='V'){
 function Colisiones(){
 
 	for (var i = 0; i < arrySphere.length; i++) {
-        // Verifica si la caja delimitadora del tractor y la del objeto están definidas antes de realizar la comprobación de intersección
+        // Verifica si la caja delimitadora del tractor y la del objeto están definidas antes de realizar la comprobación de intersección  TRACTOR VERDE
         if (cube_tractor_col && objectBoundingBoxes[i]) {
             if (cube_tractor_col.intersectsBox(objectBoundingBoxes[i])) {
-                // Colisión detectada entre el tractor y el objeto aleatorio, manejarla según sea necesario
-                console.log('Colisión entre el tractor y el objeto', i);
 				arrySphere[i].position.y = 50;
 				// Actualiza la caja delimitadora del objeto aleatorio con su nueva posición
                 objectBoundingBoxes[i].setFromObject(arrySphere[i])
+				PUNTUACIONJ1++;
+				  // Colisión detectada entre el tractor y el objeto aleatorio, manejarla según sea necesario
+				  console.log('Colisión entre el tractor y el objeto', i,'PUNTUACIONJ1:', PUNTUACIONJ1 );
+
+				  var JUGADR1 = document.getElementById("valorMostrado");
+
+					// Actualiza el contenido del elemento con el valor de la variable
+					JUGADR1.textContent = "Tractor Verde Puntuacion: " + PUNTUACIONJ1;
+            }
+        }
+    }
+
+	for (var i = 0; i < arrySphere.length; i++) {
+        // Verifica si la caja delimitadora del tractor y la del objeto están definidas antes de realizar la comprobación de intersección  TRACTOR ROJO
+        if (cube_tractor2_col && objectBoundingBoxes[i]) {
+            if (cube_tractor2_col.intersectsBox(objectBoundingBoxes[i])) {
+				arrySphere[i].position.y = 50;
+				// Actualiza la caja delimitadora del objeto aleatorio con su nueva posición
+                objectBoundingBoxes[i].setFromObject(arrySphere[i])
+				PUNTUACIONJ2++;
+				  // Colisión detectada entre el tractor y el objeto aleatorio, manejarla según sea necesario
+				  console.log('Colisión entre el tractor y el objeto', i,'PUNTUACIONJ1:', PUNTUACIONJ2 );
+
+				  var JUGADR1 = document.getElementById("valorMostrado2");
+
+					// Actualiza el contenido del elemento con el valor de la variable
+					JUGADR1.textContent = "Tractor Rojo Puntuacion: " + PUNTUACIONJ2;
             }
         }
     }

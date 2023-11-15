@@ -792,7 +792,6 @@ var tecla = String.fromCharCode(e.which);
 const toggleButton = document.getElementById("toggleButton");
 const hiddenText = document.getElementById("hiddenText");
 
-
 	const opcionesGuardadas = localStorage.getItem('opciones');
 
 	if (opcionesGuardadas) {
@@ -805,14 +804,14 @@ if(tecla=='p'||tecla=='P'){
 }
 
 //Jugador 1
-
+/*
 if(tecla=='e'||tecla=='E'){
 	tractor_posicion.x=-11;
 	tractor_posicion.z=35;
 	tractor_obj.rotation.y=98.8;
 	//cube_tractor.rotation.y=270;
 	direccion_tractor = "arriba";
-}
+}*/
 if((tecla.toLowerCase()==opciones.teclaIzquierda.toLowerCase()) && move_tractor_izquierda){
 	//cube.position.x--;
 	tractor_posicion.x-=0.7;
@@ -842,33 +841,27 @@ if((tecla.toLowerCase()==opciones.teclaAbajo.toLowerCase()) && move_tractor_abaj
 	direccion_tractor = "abajo";
 	//cube_tractor.rotation.y=110;
 }
-	}
+
 //Jugador 2
-if(tecla=='o'||tecla=='O'){
-	tractor2_posicion.x=9;
-	tractor2_posicion.z=35;
-	tractor2_obj.rotation.y=98.8;
-	direccion_tractor2 = "arriba";
-}
-if((tecla=='j'||tecla=='J') && move_tractor2_izquierda){
+if((tecla.toLowerCase()==opciones.teclaIzquierdaR.toLowerCase()) && move_tractor2_izquierda){
 	//cube.position.x--;
 	tractor2_posicion.x-=0.7;
 	tractor2_obj.rotation.y=270;
 	direccion_tractor2 = "izquierda";
 }
-if((tecla=='l'||tecla=='L') && move_tractor2_derecha){
+if((tecla.toLowerCase()==opciones.teclaDerechaR.toLowerCase()) && move_tractor2_derecha){
 	//cube.position.x++;
 	tractor2_posicion.x+=0.7;
 	tractor2_obj.rotation.y=110;
 	direccion_tractor2 = "derecha";
 }
-if((tecla=='i'||tecla=='I') && move_tractor2_arriba){
+if((tecla.toLowerCase()==opciones.teclaArribaR.toLowerCase()) && move_tractor2_arriba){
 	//cube.position.z--;
 	tractor2_posicion.z-=0.7;
 	tractor2_obj.rotation.y=98.8;
 	direccion_tractor2 = "arriba";
 }
-if((tecla=='k'||tecla=='K') && move_tractor2_abajo){
+if((tecla.toLowerCase()==opciones.teclaAbajoR.toLowerCase()) && move_tractor2_abajo){
 	//cube.position.z ++;
 	tractor2_posicion.z+=0.7;
 	tractor2_obj.rotation.y=20.41;
@@ -888,7 +881,8 @@ if(tecla=='v'||tecla=='V'){
 	//$('canvas').show();
 	//hiddenText.classList.remove("hidden");
 }
-
+	
+}
  });
 
 

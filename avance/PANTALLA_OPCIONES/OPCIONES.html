@@ -14,7 +14,7 @@
     <div class="cuadroopciones">
 
         <h1 class="dialogoopciones">opciones</h1>
-        <h3 class="dialogoopciones">controles de movimiento Rojo</h3>
+        <h3 class="dialogoopciones">controles de movimiento Verde</h3>
         <div class="contenedorbotones">
 
             <label class="optionsMenulabel" for="teclaIzquierda">Izquierda:</label>
@@ -32,21 +32,21 @@
         
         </div>
 
-        <h3 class="dialogoopciones">controles de movimiento Verde</h3>
+        <h3 class="dialogoopciones">controles de movimiento Rojo</h3>
         <div class="contenedorbotones">
 
           
-            <label class="optionsMenulabel" for="teclaIzquierda">Izquierda:</label>
-            <input class="optionsMenuinput" type="text" id="teclaIzquierdav" value="A">
+            <label class="optionsMenulabel" for="teclaIzquierdaR">Izquierda:</label>
+            <input class="optionsMenuinput" type="text" id="teclaIzquierdaR" value="J">
 
-            <label class="optionsMenulabel" for="teclaDerecha">Derecha:</label>
-            <input class="optionsMenuinput" type="text" id="teclaDerechav" value="D">
+            <label class="optionsMenulabel" for="teclaDerechaR">Derecha:</label>
+            <input class="optionsMenuinput" type="text" id="teclaDerechaR" value="L">
 
-            <label class="optionsMenulabel" for="teclaArriba">Arriba:</label>
-            <input class="optionsMenuinput" type="text" id="teclaArribav" value="W">
+            <label class="optionsMenulabel" for="teclaArribaR">Arriba:</label>
+            <input class="optionsMenuinput" type="text" id="teclaArribaR" value="I">
 
-            <label class="optionsMenulabel" for="teclaAbajo">Abajo:</label>
-            <input class="optionsMenuinput" type="text" id="teclaAbajov" value="S">
+            <label class="optionsMenulabel" for="teclaAbajoR">Abajo:</label>
+            <input class="optionsMenuinput" type="text" id="teclaAbajoR" value="K">
 
         </div>
         <h3 class="dialogoopciones">controles de interaccion</h3>
@@ -73,13 +73,22 @@
             const teclaArriba = document.getElementById('teclaArriba').value.toUpperCase();
             const teclaAbajo = document.getElementById('teclaAbajo').value.toUpperCase();
     
-            const opciones = {
-                teclaIzquierda,
-                teclaDerecha,
-                teclaArriba,
-                teclaAbajo
-            };
-    
+            const teclaIzquierdaR = document.getElementById('teclaIzquierdaR').value.toUpperCase();
+            const teclaDerechaR = document.getElementById('teclaDerechaR').value.toUpperCase();
+            const teclaArribaR = document.getElementById('teclaArribaR').value.toUpperCase();
+            const teclaAbajoR = document.getElementById('teclaAbajoR').value.toUpperCase();
+
+    const opciones = {
+        teclaIzquierda,
+        teclaDerecha,
+        teclaArriba,
+        teclaAbajo,
+        teclaIzquierdaR,
+        teclaDerechaR,
+        teclaArribaR,
+        teclaAbajoR
+    };
+
             localStorage.setItem('opciones', JSON.stringify(opciones));
     
             alert('Opciones guardadas correctamente.');
