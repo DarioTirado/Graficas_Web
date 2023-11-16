@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+ 
+    <link href="https://fonts.googleapis.com/css?family=Raleway:700,800,900&display=swap" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <h2>Add Facebook Login to your webpage</h2>
+
+      <!-- Set the element id for the JSON response -->
+    
+      <p id="profile"></p>
+
+
+      <div class="overlay"></div>
+        
+      <div >
+          <div class="logo">
+              <img src="media/logo grafweb2.png" alt="Crazy Farmers Logo">
+  
+          </div>
+          
+      </div>
+      
+      <video muted autoplay loop>
+          <source src="media/Low Poly Farm. HappyLifeville.mp4">
+      </video>
+                  <div class="botones">
+                      <div class="sb">
+                          <a href="" onclick="onlogin();" class="btnn">Log In</a>
+                            
+                              
+
+                      </div>
+                  </div>
+
+
+
+
+                  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+                  <script>
+                    window.fbAsyncInit = function() {
+                      FB.init({
+                        appId: '719687860055071',
+                        cookie: true,
+                        xfbml: true,
+                        version: 'v17.0'
+                      });
+                  
+                      FB.AppEvents.logPageView();
+                  
+                      FB.getLoginStatus(function(response) {
+                        if (response.status === 'connected') {
+                          // El usuario ya ha iniciado sesión en tu aplicación
+                          // Realiza acciones relacionadas con el inicio de sesión aquí
+                          console.log('El usuario ya está conectado.');
+                        } else {
+                          // El usuario no ha iniciado sesión en tu aplicación
+                          console.log('El usuario no ha iniciado sesión.');
+                        }
+                      });
+                    };
+                  
+                    (function(d, s, id) {
+                      var js, fjs = d.getElementsByTagName(s)[0];
+                      if (d.getElementById(id)) {
+                        return;
+                      }
+                      js = d.createElement(s);
+                      js.id = id;
+                      js.src = "https://connect.facebook.net/en_US/sdk.js";
+                      fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                  
+                    function onlogin() {
+                      FB.login((response) => {
+                        if (response.authResponse) {
+                          // El usuario ha iniciado sesión correctamente
+                          // Realiza acciones relacionadas con el inicio de sesión aquí
+                        }
+                      });
+                    }
+                  </script>
+
+<fb:login-button 
+scope="public_profile,email"
+onlogin="checkLoginState();">
+</fb:login-button>       
+
+</body>
+</html>

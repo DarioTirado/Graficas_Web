@@ -760,6 +760,8 @@ mtlplanta.load('models/planta.mtl',function (materials){
 
 //-----------------------------------------FUNCIONES--------------------------------------------------------//
 var objectBoundingBoxes = [];
+var objectBoundingBoxesBotas = [];
+var objectBoundingBoxesMiel = [];
 var PUNTUACIONJ1 = 0;
 var PUNTUACIONJ2 = 0;
 
@@ -784,6 +786,26 @@ function clearScene() {
     for (var i = 0; i < arrySphere.length; i++) {
         scene.remove(arrySphere[i]);
 		scene.remove(objectBoundingBoxes[i]);
+    }
+    arrySphere = [];
+	objectBoundingBoxes = [];
+}
+
+
+function clearScenebotas() {
+    for (var i = 0; i < arrybotas.length; i++) {
+        scene.remove(arrybotas[i]);
+		scene.remove(objectBoundingBoxesBotas[i]);
+    }
+    arrySphere = [];
+	objectBoundingBoxes = [];
+}
+
+
+function clearSceneMiel() {
+    for (var i = 0; i < arryMiel.length; i++) {
+        scene.remove(arryMiel[i]);
+		scene.remove(objectBoundingBoxesMiel[i]);
     }
     arrySphere = [];
 	objectBoundingBoxes = [];
@@ -839,13 +861,160 @@ var mtlzanahoria = new MTLLoader(manager);
 });
 
 
+
+console.log(materials);
+});
+}
+}
+
+var arrybotas = [];
+function generateRandomBotas() {
+	const botas = new OBJLoader(manager);
+var mtlbotas = new MTLLoader(manager);
+
+	for(var i = 0; i<1; i++){
+	mtlbotas.load('models/POWERUPS/Bota.mtl',function (materials){
+
+	materials.preload();
+
+	botas.setMaterials(materials);
+
+	botas.load('models/POWERUPS/Bota.obj',
+
+		function ( object3 )  {
+
+      object3.scale.copy( new THREE.Vector3(0.5,0.5,0.5));
+	  object3.position.x =-23;
+	  object3.position.y =-55;
+	  object3.position.z =40;
+	  object3.rotation.y =110;
+
+
+	object3.position.y=commonYPosition;
+	
+	object3.position.x=Math.floor(Math.random()*40-20);
+	object3.position.z=Math.floor(Math.random()*40-5);
+	
+	object3.scale.copy(new THREE.Vector3(0.8,0.8,0.8));
+	
+	arrybotas.push(object3);
+
+
+	var boundingBoxbotas = new THREE.Box3().setFromObject(object3);
+	objectBoundingBoxesBotas.push(boundingBoxbotas);
+
+	scene.add( object3 );
+	
+
+	
+
+});
+
+
+
 console.log(materials);
 });
 }
 }
 
 
+var arryMiel = [];
+function generateRandomMiel() {
+	const miel = new OBJLoader(manager);
+var mtlmiel = new MTLLoader(manager);
+
+	for(var i = 0; i<2; i++){
+	mtlmiel.load('models/POWERUPS/honey.mtl',function (materials){
+
+	materials.preload();
+
+	miel.setMaterials(materials);
+
+	miel.load('models/POWERUPS/honey.obj',
+
+		function ( object4 )  {
+
+      object4.scale.copy( new THREE.Vector3(0.5,0.5,0.5));
+	  object4.position.x =-23;
+	  object4.position.y =-55;
+	  object4.position.z =40;
+	  object4.rotation.y =110;
+
+
+	object4.position.y=commonYPosition;
+	
+	object4.position.x=Math.floor(Math.random()*40-20);
+	object4.position.z=Math.floor(Math.random()*40-5);
+	
+	object4.scale.copy(new THREE.Vector3(4,4,4));
+	
+	arryMiel.push(object4);
+
+
+	var boundingBoxMiel = new THREE.Box3().setFromObject(object4);
+	objectBoundingBoxesMiel.push(boundingBoxMiel);
+
+	scene.add( object4 );
+	
+
+	
+
+});
+
+
+
+
+
+console.log(materials);
+});
+}
+}
+
+var Velocidadveerde = 0.6;
+var velocidadroja = 0.6;
+var contador=0;
+var contador2=0;
+var contadorRojo = 0;
+var contadorRojo2 = 0;
+
 function update() {
+
+	if(Velocidadveerde > 0.6){
+		contador++;
+		if(contador==300){
+			alert("se acabo el powerup Botas");
+			Velocidadveerde = 0.6;
+			contador=0;
+		}
+	}
+
+	if(velocidadroja > 0.6){
+		contadorRojo++;
+		if(contadorRojo==300){
+			alert("se acabo el powerup Botas");
+			velocidadroja = 0.6;
+			contadorRojo=0;
+		}
+	}
+
+	if(velocidadroja == 0){
+		contadorRojo2++;
+		if(contadorRojo2==200){
+			alert("se acabo el powerup Miel");
+			velocidadroja = 0.6;
+			contadorRojo2=0;
+		}
+	}
+
+	if(Velocidadveerde == 0){
+		contador2++;
+		if(contador2==200){
+			alert("se acabo el powerup Miel");
+			Velocidadveerde = 0.6;
+			contador2=0;
+		}
+	}
+
     var deltaTime = clock.getDelta();
     elapsedTime += deltaTime;
 
@@ -866,8 +1035,11 @@ function update() {
 		
 		elapsedTime = 0;
 		clearScene();
+		clearScenebotas();
+		clearSceneMiel();
         generateRandomObject();
-
+		generateRandomBotas();
+		generateRandomMiel();
 		if(elapsedTime>=5){
 			entro=false;
 		}
@@ -875,8 +1047,11 @@ function update() {
     } if(entro===false){
 	
 		clearScene();
+		clearScenebotas();
+		clearSceneMiel();
         generateRandomObject();
-       
+        generateRandomBotas();
+		generateRandomMiel();
     }
 
     // Llama a la función update en el próximo cuadro
@@ -891,8 +1066,6 @@ update();
 
 
 
-
-	
 
 
 function animate() {
@@ -939,6 +1112,12 @@ $(document).ready(function() {
 
 var tecla = String.fromCharCode(e.which);
 
+
+
+
+
+
+
 const toggleButton = document.getElementById("toggleButton");
 const hiddenText = document.getElementById("hiddenText");
 
@@ -950,25 +1129,25 @@ if(tecla=='p'||tecla=='P'){
 //Jugador 1
 if((tecla=='a'||tecla=='A')&& move_tractor_izquierda){
 	//cube.position.x--;
-	tractor_posicion.x-=0.7;
+	tractor_posicion.x-=Velocidadveerde;
 	tractor_obj.rotation.y=270;
 	direccion_tractor = "izquierda";
 }
 if((tecla=='d'||tecla=='D') && move_tractor_derecha){
 	//cube.position.x++;
-	tractor_posicion.x+=0.7;
+	tractor_posicion.x+=Velocidadveerde;
 	tractor_obj.rotation.y=110;
 	direccion_tractor = "derecha";
 }
 if((tecla=='w'||tecla=='W')&& move_tractor_arriba){
 	//cube.position.z--;
-	tractor_posicion.z-=0.7;
+	tractor_posicion.z-=Velocidadveerde;
 	tractor_obj.rotation.y=98.8;
 	direccion_tractor = "arriba";
 }
 if((tecla=='s'||tecla=='S')&& move_tractor_abajo){
 	//cube.position.z ++;
-	tractor_posicion.z+=0.7;
+	tractor_posicion.z+=Velocidadveerde;
 	tractor_obj.rotation.y=20.41;
 	direccion_tractor = "abajo";
 }
@@ -982,25 +1161,25 @@ if(tecla=='o'||tecla=='O'){
 }
 if((tecla=='j'||tecla=='J') && move_tractor2_izquierda){
 	//cube.position.x--;
-	tractor2_posicion.x-=0.7;
+	tractor2_posicion.x-=velocidadroja;
 	tractor2_obj.rotation.y=270;
 	direccion_tractor2 = "izquierda";
 }
 if((tecla=='l'||tecla=='L') && move_tractor2_derecha){
 	//cube.position.x++;
-	tractor2_posicion.x+=0.7;
+	tractor2_posicion.x+=velocidadroja;
 	tractor2_obj.rotation.y=110;
 	direccion_tractor2 = "derecha";
 }
 if((tecla=='i'||tecla=='I') && move_tractor2_arriba){
 	//cube.position.z--;
-	tractor2_posicion.z-=0.7;
+	tractor2_posicion.z-=velocidadroja;
 	tractor2_obj.rotation.y=98.8;
 	direccion_tractor2 = "arriba";
 }
 if((tecla=='k'||tecla=='K') && move_tractor2_abajo){
 	//cube.position.z ++;
-	tractor2_posicion.z+=0.7;
+	tractor2_posicion.z+=velocidadroja;
 	tractor2_obj.rotation.y=20.41;
 	direccion_tractor2 = "abajo";
 }
@@ -1028,7 +1207,77 @@ if(tecla=='v'||tecla=='V'){
 
 
 function Colisiones(){
+//--------------PARA LOS POWERUPS-------------//
+for (var i = 0; i < arrybotas.length; i++) {
+	// Verifica si la caja delimitadora del tractor y la del objeto están definidas antes de realizar la comprobación de intersección  TRACTOR VERDE     BOTAS
+	if (cube_tractor_col && objectBoundingBoxesBotas[i]) {
+		if (cube_tractor_col.intersectsBox(objectBoundingBoxesBotas[i])) {
+			arrybotas[i].position.y = 50;
+			// Actualiza la caja delimitadora del objeto aleatorio con su nueva posición
+			objectBoundingBoxesBotas[i].setFromObject(arrybotas[i])
+			Velocidadveerde = Velocidadveerde + 1;
+			  // Colisión detectada entre el tractor y el objeto aleatorio, manejarla según sea necesario
+			  console.log('Colisión entre el tractor y el objeto botas');
 
+			
+
+				
+		
+		}
+	}
+}
+
+for (var i = 0; i < arrybotas.length; i++) {
+	// Verifica si la caja delimitadora del tractor y la del objeto están definidas antes de realizar la comprobación de intersección  TRACTOR ROJO 
+	if (cube_tractor2_col && objectBoundingBoxesBotas[i]) {
+		if (cube_tractor2_col.intersectsBox(objectBoundingBoxesBotas[i])) {
+			arrybotas[i].position.y = 50;
+			// Actualiza la caja delimitadora del objeto aleatorio con su nueva posición
+			objectBoundingBoxesBotas[i].setFromObject(arrybotas[i])
+			velocidadroja = velocidadroja + 1;
+			  // Colisión detectada entre el tractor y el objeto aleatorio, manejarla según sea necesario
+			  console.log('Colisión entre el tractor rojo y el objeto botas');
+
+			
+
+				
+		
+		}
+	}
+}
+
+for (var i = 0; i < arryMiel.length; i++) {
+	// Verifica si la caja delimitadora del tractor y la del objeto están definidas antes de realizar la comprobación de intersección  TRACTOR VERDE     MIEL
+	if (cube_tractor_col && objectBoundingBoxesMiel[i]) {
+		if (cube_tractor_col.intersectsBox(objectBoundingBoxesMiel[i])) {
+			arryMiel[i].position.y = 50;
+			// Actualiza la caja delimitadora del objeto aleatorio con su nueva posición
+			objectBoundingBoxesMiel[i].setFromObject(arryMiel[i])
+			velocidadroja = velocidadroja - 0.6;
+			  // Colisión detectada entre el tractor y el objeto aleatorio, manejarla según sea necesario
+			  console.log('Colisión entre el tractor y el objeto Miel');
+						
+		
+		}
+	}
+}
+
+for (var i = 0; i < arryMiel.length; i++) {
+	// Verifica si la caja delimitadora del tractor y la del objeto están definidas antes de realizar la comprobación de intersección  TRACTOR VERDE     MIEL
+	if (cube_tractor2_col && objectBoundingBoxesMiel[i]) {
+		if (cube_tractor2_col.intersectsBox(objectBoundingBoxesMiel[i])) {
+			arryMiel[i].position.y = 50;
+			// Actualiza la caja delimitadora del objeto aleatorio con su nueva posición
+			objectBoundingBoxesMiel[i].setFromObject(arryMiel[i])
+			Velocidadveerde = Velocidadveerde - 0.6;
+			  // Colisión detectada entre el tractor y el objeto aleatorio, manejarla según sea necesario
+			  console.log('Colisión entre el tractor y el objeto Miel');
+		
+		}
+	}
+}
+
+//--------------PARA LA REECOLECCION Y PUNTUACIONES-------------//
 	for (var i = 0; i < arrySphere.length; i++) {
         // Verifica si la caja delimitadora del tractor y la del objeto están definidas antes de realizar la comprobación de intersección  TRACTOR VERDE
         if (cube_tractor_col && objectBoundingBoxes[i]) {
