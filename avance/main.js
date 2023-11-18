@@ -939,12 +939,13 @@ function animate() {
 
 	//----------------------------------------Plaga
 
+	if(VIDAJ1>0){
 	if(plaga1_choque){
+		
 	cube_plaga.position.y = plaga_posicion.y;
 	plaga_obj.position.y = plaga_posicion.y;
     const deltaX = cube_tractor.position.x - cube_plaga.position.x;
     const deltaZ = cube_tractor.position.z - cube_plaga.position.z;
-
     if (Math.abs(deltaX) > 0.3) {
         cube_plaga.position.x += 0.3 * Math.sign(deltaX);
 		plaga_obj.position.x += 0.3 * Math.sign(deltaX);
@@ -959,12 +960,40 @@ function animate() {
 	plaga_col.copy(cube_plaga.geometry.boundingBox).applyMatrix4(cube_plaga.matrixWorld);
     }else{
 		contador1 += 1;
-		if(contador1 == 15){
+		if(contador1 == 10){
 			plaga1_choque = true;
 			contador1 = 0;
 		}
 	}
+}else{
+	if(plaga1_choque){
+		
+		cube_plaga.position.y = plaga_posicion.y;
+		plaga_obj.position.y = plaga_posicion.y;
+		const deltaX = cube_tractor2.position.x - cube_plaga.position.x;
+		const deltaZ = cube_tractor2.position.z - cube_plaga.position.z;
+		if (Math.abs(deltaX) > 0.3) {
+			cube_plaga.position.x += 0.3 * Math.sign(deltaX);
+			plaga_obj.position.x += 0.3 * Math.sign(deltaX);
+		}
+	
+		if (Math.abs(deltaZ) > 0.3) {
+			cube_plaga.position.z += 0.3 * Math.sign(deltaZ);
+			plaga_obj.position.z += 0.3 * Math.sign(deltaZ);
+		}
+	
+		plaga_col.setFromObject(cube_plaga);
+		plaga_col.copy(cube_plaga.geometry.boundingBox).applyMatrix4(cube_plaga.matrixWorld);
+		}else{
+			contador1 += 1;
+			if(contador1 == 10){
+				plaga1_choque = true;
+				contador1 = 0;
+			}
+		}
+}
 
+if(VIDAJ2>0){
 	if(plaga2_choque){
 		cube_plaga2.position.y = plaga2_posicion.y;
 		plaga2_obj.position.y = plaga2_posicion.y;
@@ -985,11 +1014,38 @@ function animate() {
 		plaga2_col.copy(cube_plaga2.geometry.boundingBox).applyMatrix4(cube_plaga2.matrixWorld);
 		}else{
 			contador2 += 1;
-			if(contador2 == 15){
+			if(contador2 == 10){
 				plaga2_choque = true;
 				contador2 = 0;
 			}
 		}
+	}else{
+		if(plaga2_choque){
+			cube_plaga2.position.y = plaga2_posicion.y;
+			plaga2_obj.position.y = plaga2_posicion.y;
+			const deltaX = cube_tractor.position.x - cube_plaga2.position.x;
+			const deltaZ = cube_tractor.position.z - cube_plaga2.position.z;
+		
+			if (Math.abs(deltaX) > 0.3) {
+				cube_plaga2.position.x += 0.3 * Math.sign(deltaX);
+				plaga2_obj.position.x += 0.3 * Math.sign(deltaX);
+			}
+		
+			if (Math.abs(deltaZ) > 0.3) {
+				cube_plaga2.position.z += 0.3 * Math.sign(deltaZ);
+				plaga2_obj.position.z += 0.3 * Math.sign(deltaZ);
+			}
+		
+			plaga2_col.setFromObject(cube_plaga2);
+			plaga2_col.copy(cube_plaga2.geometry.boundingBox).applyMatrix4(cube_plaga2.matrixWorld);
+			}else{
+				contador2 += 1;
+				if(contador2 == 10){
+					plaga2_choque = true;
+					contador2 = 0;
+				}
+			}
+	}
 
 	Colisiones();
 
@@ -1036,6 +1092,7 @@ if(tecla=='e'||tecla=='E'){
 	//cube_tractor.rotation.y=270;
 	direccion_tractor = "arriba";
 }*/
+if(VIDAJ1>0){
 if((tecla.toLowerCase()==opciones.teclaIzquierda.toLowerCase()) && move_tractor_izquierda){
 	//cube.position.x--;
 	tractor_posicion.x-=0.7;
@@ -1069,7 +1126,9 @@ if((tecla.toLowerCase()==opciones.teclaAbajo.toLowerCase()) && move_tractor_abaj
 	objfruta1.position.z+=0.7;
 	//cube_tractor.rotation.y=110;
 }
+}
 
+if(VIDAJ2>0){
 //Jugador 2
 if((tecla.toLowerCase()==opciones.teclaIzquierdaR.toLowerCase()) && move_tractor2_izquierda){
 	//cube.position.x--;
@@ -1094,6 +1153,7 @@ if((tecla.toLowerCase()==opciones.teclaAbajoR.toLowerCase()) && move_tractor2_ab
 	tractor2_posicion.z+=0.7;
 	tractor2_obj.rotation.y=20.41;
 	direccion_tractor2 = "abajo";
+}
 }
 
 if(tecla=='c'||tecla=='C' ){
@@ -1192,25 +1252,31 @@ function Colisiones(){
 	//Colision insectos
 	if(cube_tractor_col.intersectsBox(plaga_col))
 	{
+		if(VIDAJ1>0){
 		VIDAJ1 -= 2;
 		Var_vida1.textContent = "Tractor Verde Vida: " + VIDAJ1;
-		plaga1_choque = false;
+		plaga1_choque = false;}
 	}
 	if(cube_tractor_col.intersectsBox(plaga2_col))
 	{
+		if(VIDAJ1>0){
 		VIDAJ1 -= 2;
 		Var_vida1.textContent = "Tractor Verde Vida: " + VIDAJ1;
+		plaga1_choque = false;}
 	}
 	if(cube_tractor2_col.intersectsBox(plaga2_col))
 	{
+		if(VIDAJ2>0){
 		VIDAJ2 -= 2;
 		Var_vida2.textContent = "Tractor Rojo Vida: " + VIDAJ2;
-		plaga2_choque = false;
+		plaga2_choque = false;}
 	}
 	if(cube_tractor2_col.intersectsBox(plaga_col))
 	{
+		if(VIDAJ2>0){
 		VIDAJ2 -= 2;
 		Var_vida2.textContent = "Tractor Rojo Vida: " + VIDAJ2;
+		plaga2_choque = false;}
 	}
 }
 
