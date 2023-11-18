@@ -118,6 +118,49 @@ cerca_abajo_col.setFromObject(cube_cerca_abajo);
 cube_cerca_abajo.visible = false;
 group.add( cube_cerca_abajo );
 
+//-------------------------------Frutas
+
+var fruta_posicion = new THREE.Vector3(-10, -58.5, 31);
+var fruta_obj = new THREE.Object3D();
+const geometry_fruta = new THREE.BoxGeometry( 1.2, 1.2, 1.2 );
+const material_fruta = new THREE.MeshPhongMaterial( { color: 0x00ff10 } );
+const cube_fruta = new THREE.Mesh( geometry_fruta, material_fruta );
+cube_fruta.position.set(fruta_posicion.x, fruta_posicion.y, fruta_posicion.z);
+cube_fruta.visible = false;
+group.add( cube_fruta );
+
+var fruta2_posicion = new THREE.Vector3(-10, -58.5, 31);
+var fruta2_obj = new THREE.Object3D();
+const geometry_fruta2 = new THREE.BoxGeometry( 1.2, 1.2, 1.2 );
+const material_fruta2 = new THREE.MeshPhongMaterial( { color: 0x00ff10 } );
+const cube_fruta2 = new THREE.Mesh( geometry_fruta2, material_fruta2 );
+cube_fruta2.position.set(fruta2_posicion.x, fruta2_posicion.y, fruta2_posicion.z);
+cube_fruta2.visible = false;
+group.add( cube_fruta2 );
+
+//-------------------------------Plaga
+
+var plaga_posicion = new THREE.Vector3(-14, -58.5, 18);
+var plaga_obj = new THREE.Object3D();
+const geometry_cube_plaga = new THREE.BoxGeometry( 1.7, 1.7, 1.7 );
+const material_cube_plaga = new THREE.MeshPhongMaterial( { color: 0x00ff10 } );
+const cube_plaga = new THREE.Mesh( geometry_cube_plaga, material_cube_plaga );
+cube_plaga.position.set(plaga_posicion.x, plaga_posicion.y, plaga_posicion.z);
+var plaga_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+plaga_col.setFromObject(cube_plaga);
+//cube_plaga.visible = false;
+group.add( cube_plaga );
+
+var plaga2_posicion = new THREE.Vector3(11, -58.5, 18);
+var plaga2_obj = new THREE.Object3D();
+const geometry_cube_plaga2 = new THREE.BoxGeometry( 1.7, 1.7, 1.7 );
+const material_cube_plaga2 = new THREE.MeshPhongMaterial( { color: 0x00ff10 } );
+const cube_plaga2 = new THREE.Mesh( geometry_cube_plaga2, material_cube_plaga2 );
+cube_plaga2.position.set(plaga2_posicion.x, plaga2_posicion.y, plaga2_posicion.z);
+var plaga2_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+plaga2_col.setFromObject(cube_plaga2);
+//cube_plaga2.visible = false;
+group.add( cube_plaga2 );
 
 //////////////////LUCES/////////////////////77
 const al = new THREE.AmbientLight(0xffffff, 0.5);
@@ -223,6 +266,20 @@ const trac1 = new OBJLoader(manager);
 var mtltrac1 = new MTLLoader(manager);
 const trac2 = new OBJLoader(manager);
 var mtltrac2 = new MTLLoader(manager);
+//Frutas
+const frut1 = new OBJLoader(manager);
+var mtlfrut1 = new MTLLoader(manager);
+const frut2 = new OBJLoader(manager);
+var mtlfrut2 = new MTLLoader(manager);
+//Insectos
+const plaga1 = new OBJLoader(manager);
+var mtlplaga1 = new MTLLoader(manager);
+const plaga2 = new OBJLoader(manager);
+var mtlplaga2 = new MTLLoader(manager);
+var plaga1_choque = true;
+var contador1 = 0;
+var plaga2_choque = true;
+var contador2 = 0;
 //Colisiones_variables
 var direccion_tractor;
 var move_tractor_izquierda = true;
@@ -234,7 +291,6 @@ var move_tractor2_izquierda = true;
 var move_tractor2_derecha = true;
 var move_tractor2_arriba = true;
 var move_tractor2_abajo = true;
-//vegetales
 
 mtltrac1.load('models/Tractor/Tractor.mtl',function (materials){
 
@@ -249,6 +305,23 @@ mtltrac1.load('models/Tractor/Tractor.mtl',function (materials){
 			object.rotation.y = 98.8;
 			scene.add(object);
 			tractor_obj = object;
+		});
+
+	console.log(materials);
+});
+
+mtlfrut1.load('models/frutas/lowpoly fruits.mtl',function (materials){
+
+	materials.preload();
+
+	frut1.setMaterials(materials);
+
+	frut1.load('models/frutas/lowpoly fruits.obj',
+
+		function ( object ) {
+			object.scale.copy(new THREE.Vector3(1.1, 1.1, 1.1));
+			scene.add(object);
+			fruta_obj = object;
 		});
 
 	console.log(materials);
@@ -273,6 +346,23 @@ mtltrac2.load('models/Tractor/Tractor2.mtl',function (materials){
 	console.log(materials);
 });
 
+mtlfrut2.load('models/frutas/lowpoly fruits.mtl',function (materials){
+
+	materials.preload();
+
+	frut2.setMaterials(materials);
+
+	frut2.load('models/frutas/lowpoly fruits.obj',
+
+		function ( object ) {
+			object.scale.copy(new THREE.Vector3(1.1, 1.1, 1.1));
+			scene.add(object);
+			fruta2_obj = object;
+		});
+
+	console.log(materials);
+});
+
 mtlcultivo2.load('models/Cultivo2/cultivo2.mtl',function (materials){
 
 	materials.preload();
@@ -290,7 +380,7 @@ mtlcultivo2.load('models/Cultivo2/cultivo2.mtl',function (materials){
 	  object.rotation.y =110;
 	 
 
-			scene.add( object );
+			//scene.add( object );
 
 		});
 
@@ -314,7 +404,7 @@ mtlmount2.load('models/Mount/mount.mtl',function (materials){
 	  object.rotation.y =116.33;
 	 
 
-			scene.add( object );
+			//scene.add( object );
 
 		});
 
@@ -338,7 +428,7 @@ mtlmount.load('models/Mount/mount.mtl',function (materials){
 	  object.rotation.y =116.33;
 	 
 
-			scene.add( object );
+			//scene.add( object );
 
 		});
 
@@ -362,7 +452,7 @@ mtlcultivo2.load('models/Cultivo2/cultivo2.mtl',function (materials){
 	  object.rotation.y =116.33;
 	 
 
-			scene.add( object );
+			//scene.add( object );
 
 		});
 
@@ -410,7 +500,7 @@ mtlGarnja.load('models/granja/Farm.mtl',function (materials){
 	  object.rotation.y =116.1;
 	
 
-			scene.add( object );
+			//scene.add( object );
 
 		});
 
@@ -435,7 +525,7 @@ mtlMolino.load('models/Molino/Molino.mtl',function (materials){
 	  object.rotation.y =116.1;
 	
 
-			scene.add( object );
+			//scene.add( object );
 
 		});
 
@@ -593,6 +683,48 @@ mtlcerca_der.load('models/Cerca/Cerca_1.mtl',function (materials){
 	console.log(materials);
   
   });
+
+  mtlplaga1.load('models/PLAGA/PLAGA.mtl',function (materials){
+
+	materials.preload();
+  
+	plaga1.setMaterials(materials);
+  
+	plaga1.load('models/PLAGA/PLAGA.obj',
+  
+		function ( object ) {
+  
+	  object.scale.copy( new THREE.Vector3(1,1,1));
+			//scene.add( object );
+			plaga_obj=object;
+  
+		});
+  
+	console.log(materials);
+  
+  });
+
+  mtlplaga2.load('models/PLAGA/PLAGA.mtl',function (materials){
+
+	materials.preload();
+  
+	plaga2.setMaterials(materials);
+  
+	plaga2.load('models/PLAGA/PLAGA.obj',
+  
+		function ( object ) {
+  
+	  object.scale.copy( new THREE.Vector3(1,1,1));
+			//scene.add( object );
+			plaga2_obj=object;
+  
+		});
+  
+	console.log(materials);
+  
+  });
+
+
   //------------------------------ASIGNACION DE CONTROLES--------------------------------------------------//
 
 
@@ -600,6 +732,14 @@ mtlcerca_der.load('models/Cerca/Cerca_1.mtl',function (materials){
 // Llama a la función al cargar la página
 
 //-----------------------------------------FUNCIONES-------------------------------------------------------//
+
+var Var_vida1 = document.getElementById("valorMostrado");
+var Var_vida2 = document.getElementById("valorMostrado2");
+var VIDAJ1 = 50;
+var VIDAJ2 = 50;
+Var_vida1.textContent = "Tractor Verde Vida: " + VIDAJ1;
+Var_vida2.textContent = "Tractor Rojo Vida: " + VIDAJ2;
+
 
 function formatTime(seconds) {
 	const minutos = Math.floor(seconds / 60);
@@ -614,11 +754,11 @@ function actualizarContador() {
 }
 
 // Inicialización del tiempo y configuración del intervalo
-let tiempoTranscurrido = 20;
+let tiempoTranscurrido = 30;
 const intervalo = setInterval(actualizarContador, 1000);
 
 
-
+/** 
 function clearScene() {
     for (var i = 0; i < arrySphere.length; i++) {
         scene.remove(arrySphere[i]);
@@ -671,17 +811,24 @@ mtlzanahoria.load('models/Vegetales/carrot.mtl',function (materials){
 console.log(materials);
 });
 }
-}
+}*/
 
 
 function update() {
-    var deltaTime = clock.getDelta();
-    elapsedTime += deltaTime;
+    //var deltaTime = clock.getDelta();
+    //elapsedTime += deltaTime;
 
     // Verifica si ha pasado 7 segundos
-	if(tiempoTranscurrido==0){
-		alert("!!Se Acabo El Tiempo!!\n Gana:");
+	if((tiempoTranscurrido==0)&&(VIDAJ1>0)&&(VIDAJ2>0)){
+		alert("Sobrevivieron los cultivos, FELICIDADES");
 	}
+	if(tiempoTranscurrido>0){
+	if((VIDAJ1<=0)&&(VIDAJ2<=0)){
+		tiempoTranscurrido=0;
+		alert("No sobrevivieron los cultivos, SUERTE LA PROXIMA");
+		}
+	}
+	/** 
     if (elapsedTime > 5) {
         // Si no ha pasado el tiempo límite, elimina los objetos existentes y genera nuevos objetos
 		
@@ -698,7 +845,7 @@ function update() {
 		clearScene();
         generateRandomObject();
        
-    }
+    }*/
 
     // Llama a la función update en el próximo cuadro
     requestAnimationFrame(update);
@@ -709,7 +856,6 @@ update();
 
 
 function animate() {
-	
 
 	//Jugador 1
 	cube_tractor.position.x = tractor_posicion.x;
@@ -720,6 +866,18 @@ function animate() {
 	tractor_obj.position.y = tractor_posicion.y;
 	tractor_obj.position.z = tractor_posicion.z;
 
+	fruta_posicion.x = tractor_posicion.x + 1.3;
+	fruta_posicion.y = -59.1;
+	fruta_posicion.z = tractor_posicion.z - 6.5;
+
+	cube_fruta.position.x = fruta_posicion.x;
+	cube_fruta.position.y = fruta_posicion.y;
+	cube_fruta.position.z = fruta_posicion.z;
+
+	fruta_obj.position.x = fruta_posicion.x;
+	fruta_obj.position.y = fruta_posicion.y;
+	fruta_obj.position.z = fruta_posicion.z;
+
 	//Jugador 2
 	cube_tractor2.position.x = tractor2_posicion.x;
 	cube_tractor2.position.y = tractor2_posicion.y;
@@ -728,6 +886,18 @@ function animate() {
 	tractor2_obj.position.x = tractor2_posicion.x;
 	tractor2_obj.position.y = tractor2_posicion.y;
 	tractor2_obj.position.z = tractor2_posicion.z;
+
+	fruta2_posicion.x = tractor2_posicion.x + 1.5
+	fruta2_posicion.y = -59.1;
+	fruta2_posicion.z = tractor2_posicion.z - 6.5;
+
+	cube_fruta2.position.x = fruta2_posicion.x;
+	cube_fruta2.position.y = fruta2_posicion.y;
+	cube_fruta2.position.z = fruta2_posicion.z;
+
+	fruta2_obj.position.x = fruta2_posicion.x;
+	fruta2_obj.position.y = fruta2_posicion.y;
+	fruta2_obj.position.z = fruta2_posicion.z;
 
 	cube_tractor_col.setFromObject(cube_tractor);
 	cube_tractor_col.copy(cube_tractor.geometry.boundingBox).applyMatrix4(cube_tractor.matrixWorld);
@@ -766,6 +936,60 @@ function animate() {
 	cerca_abajo_obj.position.x = cerca_abajo_posicion.x + 1;
 	cerca_abajo_obj.position.y = cerca_abajo_posicion.y;
 	cerca_abajo_obj.position.z = cerca_abajo_posicion.z;
+
+	//----------------------------------------Plaga
+
+	if(plaga1_choque){
+	cube_plaga.position.y = plaga_posicion.y;
+	plaga_obj.position.y = plaga_posicion.y;
+    const deltaX = cube_tractor.position.x - cube_plaga.position.x;
+    const deltaZ = cube_tractor.position.z - cube_plaga.position.z;
+
+    if (Math.abs(deltaX) > 0.3) {
+        cube_plaga.position.x += 0.3 * Math.sign(deltaX);
+		plaga_obj.position.x += 0.3 * Math.sign(deltaX);
+	}
+
+    if (Math.abs(deltaZ) > 0.3) {
+		cube_plaga.position.z += 0.3 * Math.sign(deltaZ);
+        plaga_obj.position.z += 0.3 * Math.sign(deltaZ);
+    }
+
+	plaga_col.setFromObject(cube_plaga);
+	plaga_col.copy(cube_plaga.geometry.boundingBox).applyMatrix4(cube_plaga.matrixWorld);
+    }else{
+		contador1 += 1;
+		if(contador1 == 15){
+			plaga1_choque = true;
+			contador1 = 0;
+		}
+	}
+
+	if(plaga2_choque){
+		cube_plaga2.position.y = plaga2_posicion.y;
+		plaga2_obj.position.y = plaga2_posicion.y;
+		const deltaX = cube_tractor2.position.x - cube_plaga2.position.x;
+		const deltaZ = cube_tractor2.position.z - cube_plaga2.position.z;
+	
+		if (Math.abs(deltaX) > 0.3) {
+			cube_plaga2.position.x += 0.3 * Math.sign(deltaX);
+			plaga2_obj.position.x += 0.3 * Math.sign(deltaX);
+		}
+	
+		if (Math.abs(deltaZ) > 0.3) {
+			cube_plaga2.position.z += 0.3 * Math.sign(deltaZ);
+			plaga2_obj.position.z += 0.3 * Math.sign(deltaZ);
+		}
+	
+		plaga2_col.setFromObject(cube_plaga2);
+		plaga2_col.copy(cube_plaga2.geometry.boundingBox).applyMatrix4(cube_plaga2.matrixWorld);
+		}else{
+			contador2 += 1;
+			if(contador2 == 15){
+				plaga2_choque = true;
+				contador2 = 0;
+			}
+		}
 
 	Colisiones();
 
@@ -817,6 +1041,7 @@ if((tecla.toLowerCase()==opciones.teclaIzquierda.toLowerCase()) && move_tractor_
 	tractor_posicion.x-=0.7;
 	tractor_obj.rotation.y=270;
 	direccion_tractor = "izquierda";
+	objfruta1.position.x-=0.7;
 	//cube_tractor.rotation.y=98.8;
 }
 	
@@ -825,6 +1050,7 @@ if((tecla.toLowerCase()==opciones.teclaDerecha.toLowerCase()) && move_tractor_de
 	tractor_posicion.x+=0.7;
 	tractor_obj.rotation.y=110;
 	direccion_tractor = "derecha";
+	objfruta1.position.x+=0.7;
 	//cube_tractor.rotation.y=20.41;
 }
 if((tecla.toLowerCase()==opciones.teclaArriba.toLowerCase()) && move_tractor_arriba){
@@ -832,6 +1058,7 @@ if((tecla.toLowerCase()==opciones.teclaArriba.toLowerCase()) && move_tractor_arr
 	tractor_posicion.z-=0.7;
 	tractor_obj.rotation.y=98.8;
 	direccion_tractor = "arriba";
+	objfruta1.position.z-=0.7;
 	//cube_tractor.rotation.y=270;
 }
 if((tecla.toLowerCase()==opciones.teclaAbajo.toLowerCase()) && move_tractor_abajo){
@@ -839,6 +1066,7 @@ if((tecla.toLowerCase()==opciones.teclaAbajo.toLowerCase()) && move_tractor_abaj
 	tractor_posicion.z+=0.7;
 	tractor_obj.rotation.y=20.41;
 	direccion_tractor = "abajo";
+	objfruta1.position.z+=0.7;
 	//cube_tractor.rotation.y=110;
 }
 
@@ -959,6 +1187,30 @@ function Colisiones(){
 	if(cube_tractor2_col.intersectsBox(cerca_abajo_col))
 	{
 		tractor2_posicion.z-=1;
+	}
+
+	//Colision insectos
+	if(cube_tractor_col.intersectsBox(plaga_col))
+	{
+		VIDAJ1 -= 2;
+		Var_vida1.textContent = "Tractor Verde Vida: " + VIDAJ1;
+		plaga1_choque = false;
+	}
+	if(cube_tractor_col.intersectsBox(plaga2_col))
+	{
+		VIDAJ1 -= 2;
+		Var_vida1.textContent = "Tractor Verde Vida: " + VIDAJ1;
+	}
+	if(cube_tractor2_col.intersectsBox(plaga2_col))
+	{
+		VIDAJ2 -= 2;
+		Var_vida2.textContent = "Tractor Rojo Vida: " + VIDAJ2;
+		plaga2_choque = false;
+	}
+	if(cube_tractor2_col.intersectsBox(plaga_col))
+	{
+		VIDAJ2 -= 2;
+		Var_vida2.textContent = "Tractor Rojo Vida: " + VIDAJ2;
 	}
 }
 
