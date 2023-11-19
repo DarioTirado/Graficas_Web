@@ -872,7 +872,7 @@ function generateRandomBotas() {
 	const botas = new OBJLoader(manager);
 var mtlbotas = new MTLLoader(manager);
 
-	for(var i = 0; i<1; i++){
+	for(var i = 0; i<0; i++){
 	mtlbotas.load('models/POWERUPS/Bota.mtl',function (materials){
 
 	materials.preload();
@@ -923,7 +923,7 @@ function generateRandomMiel() {
 	const miel = new OBJLoader(manager);
 var mtlmiel = new MTLLoader(manager);
 
-	for(var i = 0; i<2; i++){
+	for(var i = 0; i<0; i++){
 	mtlmiel.load('models/POWERUPS/honey.mtl',function (materials){
 
 	materials.preload();
