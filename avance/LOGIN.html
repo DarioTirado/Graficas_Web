@@ -50,10 +50,10 @@
                   <script>
                     window.fbAsyncInit = function() {
                       FB.init({
-                        appId: '232117783075594',
+                        appId: '719687860055071',
                         cookie: true,
                         xfbml: true,
-                        version: 'v18.0'
+                        version: 'v17.0'
                       });
                   
                       FB.AppEvents.logPageView();
@@ -63,6 +63,16 @@
                           // El usuario ya ha iniciado sesión en tu aplicación
                           // Realiza acciones relacionadas con el inicio de sesión aquí
                           console.log('El usuario ya está conectado.');
+                  
+                          // Obtener información del usuario después de iniciar sesión
+                          FB.api('/me', function(apiResponse) {
+                            var userName = apiResponse.name;
+                            console.log('Nombre de usuario:', userName);
+                  
+                            // Aquí puedes guardar el nombre de usuario en una variable o realizar otras acciones con él
+                            // Por ejemplo, asignar el nombre de usuario a una variable global
+                            window.userName = userName;
+                          });
                         } else {
                           // El usuario no ha iniciado sesión en tu aplicación
                           console.log('El usuario no ha iniciado sesión.');
@@ -92,6 +102,7 @@
                   </script>
 
 <fb:login-button 
+class="btnn"
 scope="public_profile,email"
 onlogin="checkLoginState();">
 </fb:login-button>       
