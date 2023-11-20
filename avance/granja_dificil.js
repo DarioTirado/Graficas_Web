@@ -49,12 +49,10 @@ const cube = new THREE.Mesh( geometry, material );
 cube.position.set(0, -49, 50); 
 group.add( cube );
 
-//----------------------------------------Cubos colision--------------------------------------------------
-
-//Tractores
-
 var tractor_posicion = new THREE.Vector3(-11, -60, 35);
 var tractor_obj = new THREE.Object3D();
+
+//Cubos de colision
 
 const geometry_cube_tractor = new THREE.BoxGeometry( 2.3, 2.3, 2.3 );
 const material_cube_tractor = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
@@ -76,53 +74,51 @@ cube_tractor2_col.setFromObject(cube_tractor2);
 cube_tractor2.visible = false;
 group.add( cube_tractor2 );
 
-//Cercas
-
+var cerca_izquierda_posicion = new THREE.Vector3(-18, -60, 27);
+var cerca_izquierda_obj = new THREE.Object3D();
 const geometry_cube_cerca_izquierda = new THREE.BoxGeometry( 1, 2, 26 );
 const material_cube_cerca_izquierda = new THREE.MeshPhongMaterial( { color: 0x00ff10 } );
 const cube_cerca_izquierda = new THREE.Mesh( geometry_cube_cerca_izquierda, material_cube_cerca_izquierda );
-cube_cerca_izquierda.position.x= -24;
-cube_cerca_izquierda.position.y= -60;
-cube_cerca_izquierda.position.z= 27;
+cube_cerca_izquierda.position.set(cerca_izquierda_posicion.x, cerca_izquierda_posicion.y, cerca_izquierda_posicion.z);
 var cerca_izquierda_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
 cerca_izquierda_col.setFromObject(cube_cerca_izquierda);
 cube_cerca_izquierda.visible = false;
 group.add( cube_cerca_izquierda );
 
+var cerca_derecha_posicion = new THREE.Vector3(15, -60, 27);
+var cerca_derecha_obj = new THREE.Object3D();
 const geometry_cube_cerca_derecha = new THREE.BoxGeometry( 1, 2, 26 );
 const material_cube_cerca_derecha = new THREE.MeshPhongMaterial( { color: 0x00ff10 } );
 const cube_cerca_derecha = new THREE.Mesh( geometry_cube_cerca_derecha, material_cube_cerca_derecha );
-cube_cerca_derecha.position.x = 23;
-cube_cerca_derecha.position.y = -60;
-cube_cerca_derecha.position.z = 27;
+cube_cerca_derecha.position.set(cerca_derecha_posicion.x, cerca_derecha_posicion.y, cerca_derecha_posicion.z);
 var cerca_derecha_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
 cerca_derecha_col.setFromObject(cube_cerca_derecha);
 cube_cerca_derecha.visible = false;
 group.add( cube_cerca_derecha );
 
-const geometry_cube_cerca_arriba = new THREE.BoxGeometry( 50, 2, 1 );
+var cerca_arriba_posicion = new THREE.Vector3(-3, -60, 12);
+var cerca_arriba_obj = new THREE.Object3D();
+const geometry_cube_cerca_arriba = new THREE.BoxGeometry( 32, 2, 1 );
 const material_cube_cerca_arriba = new THREE.MeshPhongMaterial( { color: 0x00ff10 } );
 const cube_cerca_arriba = new THREE.Mesh( geometry_cube_cerca_arriba, material_cube_cerca_arriba );
-cube_cerca_arriba.position.x = -1;
-cube_cerca_arriba.position.y = -60;
-cube_cerca_arriba.position.z = 20;
+cube_cerca_arriba.position.set(cerca_arriba_posicion.x, cerca_arriba_posicion.y, cerca_arriba_posicion.z);
 var cerca_arriba_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
 cerca_arriba_col.setFromObject(cube_cerca_arriba);
 cube_cerca_arriba.visible = false;
 group.add( cube_cerca_arriba );
 
-const geometry_cube_cerca_abajo = new THREE.BoxGeometry( 40, 2, 1 );
+var cerca_abajo_posicion = new THREE.Vector3(-3, -60, 41);
+var cerca_abajo_obj = new THREE.Object3D();
+const geometry_cube_cerca_abajo = new THREE.BoxGeometry( 32, 2, 1 );
 const material_cube_cerca_abajo = new THREE.MeshPhongMaterial( { color: 0x00ff10 } );
 const cube_cerca_abajo = new THREE.Mesh( geometry_cube_cerca_abajo, material_cube_cerca_abajo );
-cube_cerca_abajo.position.x= -1;
-cube_cerca_abajo.position.y= -60;
-cube_cerca_abajo.position.z= 41;
+cube_cerca_abajo.position.set(cerca_abajo_posicion.x, cerca_abajo_posicion.y, cerca_abajo_posicion.z);
 var cerca_abajo_col = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
 cerca_abajo_col.setFromObject(cube_cerca_abajo);
 cube_cerca_abajo.visible = false;
 group.add( cube_cerca_abajo );
 
-//Frutas
+//-------------------------------Frutas
 
 var fruta_posicion = new THREE.Vector3(-10, -58.5, 31);
 var fruta_obj = new THREE.Object3D();
@@ -142,7 +138,8 @@ cube_fruta2.position.set(fruta2_posicion.x, fruta2_posicion.y, fruta2_posicion.z
 cube_fruta2.visible = false;
 group.add( cube_fruta2 );
 
-//Plaga
+//-------------------------------Plaga
+
 var plaga_posicion = new THREE.Vector3(-14, -58.5, 18);
 var plaga_obj = new THREE.Object3D();
 const geometry_cube_plaga = new THREE.BoxGeometry( 1.7, 1.7, 1.7 );
@@ -165,7 +162,7 @@ plaga2_col.setFromObject(cube_plaga2);
 cube_plaga2.visible = false;
 group.add( cube_plaga2 );
 
-//LUCES//
+//////////////////LUCES/////////////////////77
 const al = new THREE.AmbientLight(0xffffff, 0.5);
 group.add(al);
 
@@ -179,10 +176,11 @@ sl.position.set(15,-58,35);
 const SpotLightHelper = new THREE.SpotLightHelper(sl);
 group.add(sl,SpotLightHelper);
 
-const pl = new THREE.PointLight(0xfff78f, 8, 100 ,0);
-pl.position.set(0,-30,20);//centro
+const pl = new THREE.PointLight(0xd88d2c, 10, 50 ,0);
+pl.position.set(0,-59,10);
 const pointlightHelper = new THREE.PointLightHelper(pl);
 group.add(pl, pointlightHelper);
+
 scene.add(group);
 
 var esta_logeado = false;
@@ -235,37 +233,39 @@ scene.add(greenPlane1, greenPlane2);
 
 //---------------------------------------Modelos-------------------------------------------------------
 
-//domo
-const domo = new OBJLoader(manager);
-var mtldomo = new MTLLoader(manager);
+//CASA//    											LUEGO HAGO LA FUNCION PARA MANDARLE SOLO LOS VALORES
+const granja = new OBJLoader(manager);
+var mtlGarnja = new MTLLoader(manager);
+// Molino
+  const Molino = new OBJLoader(manager);
+  var mtlMolino = new MTLLoader(manager);
 //Suelo
 const Suelo = new OBJLoader(manager);
 var mtlSuelo = new MTLLoader(manager);
+//cultivo2
+const cultivo2 = new OBJLoader(manager);
+var mtlcultivo2 = new MTLLoader(manager);
+const cultivo22 = new OBJLoader(manager);
+var mtlcultivo22 = new MTLLoader(manager);
+//montañas
+const mount = new OBJLoader(manager);
+var mtlmount = new MTLLoader(manager);
+const mount2 = new OBJLoader(manager);
+var mtlmount2 = new MTLLoader(manager);
+//Cerca
+const cerca_izq = new OBJLoader(manager);
+var mtlcerca_izq = new MTLLoader(manager);
+const cerca_der = new OBJLoader(manager);
+var mtlcerca_der = new MTLLoader(manager);
+const cerca_atr = new OBJLoader(manager);
+var mtlcerca_atr = new MTLLoader(manager);
+const cerca_adl = new OBJLoader(manager);
+var mtlcerca_adl = new MTLLoader(manager);
 //Tractores
 const trac1 = new OBJLoader(manager);
 var mtltrac1 = new MTLLoader(manager);
 const trac2 = new OBJLoader(manager);
 var mtltrac2 = new MTLLoader(manager);
-//Arbol1
-const arbol1 = new OBJLoader(manager);
-var mtlarbol1 = new MTLLoader(manager);
-const arbol2 = new OBJLoader(manager);
-var mtlarbol2 = new MTLLoader(manager);
-//rocas de fondo
-const roca1 = new OBJLoader(manager);
-var mtlroca1 = new MTLLoader(manager);
-const roca2 = new OBJLoader(manager);
-var mtlroca2 = new MTLLoader(manager);
-//segundas rocas
-const pilar = new OBJLoader(manager);
-var mtlpilar = new MTLLoader(manager);
-const pilar2 = new OBJLoader(manager);
-var mtlpilar2 = new MTLLoader(manager);
-//arboles
-const arboles = new OBJLoader(manager);
-var mtlarboles = new MTLLoader(manager);
-const arboles2 = new OBJLoader(manager);
-var mtlarboles2 = new MTLLoader(manager);
 //Frutas
 const frut1 = new OBJLoader(manager);
 var mtlfrut1 = new MTLLoader(manager);
@@ -292,159 +292,6 @@ var move_tractor2_derecha = true;
 var move_tractor2_arriba = true;
 var move_tractor2_abajo = true;
 
-
-mtlarboles2.load('models/Arbol1/Arboles.mtl',function (materials){
-
-	materials.preload();
-
-	arboles2.setMaterials(materials);
-
-	arboles2.load('models/Arbol1/Arboles.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(1.3, 1.3, 1.3));
-			object.position.set(27, -60, 30);
-			object.rotation.y = 1;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
-mtlarboles.load('models/Arbol1/Arboles.mtl',function (materials){
-
-	materials.preload();
-
-	arboles.setMaterials(materials);
-
-	arboles.load('models/Arbol1/Arboles.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(1.3, 1.3, 1.3));
-			object.position.set(-29, -60, 30);
-			object.rotation.y = 0.6;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
-mtlpilar2.load('models/RocksLowPoly_Obj/roca_fondo2.mtl',function (materials){
-
-	materials.preload();
-
-	pilar2.setMaterials(materials);
-
-	pilar2.load('models/RocksLowPoly_Obj/roca_fondo2.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(0.6, 0.6, 0.6));
-			object.position.set(39, -60, 16);
-			object.rotation.y = -1;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
-mtlpilar.load('models/RocksLowPoly_Obj/roca_fondo2.mtl',function (materials){
-
-	materials.preload();
-
-	pilar.setMaterials(materials);
-
-	pilar.load('models/RocksLowPoly_Obj/roca_fondo2.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(0.6, 0.6, 0.6));
-			object.position.set(-36, -60, 16);
-			object.rotation.y = -1;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
-mtlroca2.load('models/RocksLowPoly_Obj/roca_fondo.mtl',function (materials){
-
-	materials.preload();
-
-	roca2.setMaterials(materials);
-
-	roca2.load('models/RocksLowPoly_Obj/roca_fondo.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(1, 1, 1));
-			object.position.set(24, -60, 0);
-			object.rotation.y = -1;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
-mtlroca1.load('models/RocksLowPoly_Obj/roca_fondo.mtl',function (materials){
-
-	materials.preload();
-
-	roca1.setMaterials(materials);
-
-	roca1.load('models/RocksLowPoly_Obj/roca_fondo.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(1, 1, 1));
-			object.position.set(-15, -60, 0);
-			object.rotation.y = 0.2;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
-mtlarbol2.load('models/Arbol1/Arbol1.mtl',function (materials){
-
-	materials.preload();
-
-	arbol2.setMaterials(materials);
-
-	arbol2.load('models/Arbol1/Arbol1.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(2, 2, 2));
-			object.position.set(-15, -60, 19);
-			object.rotation.y = 0;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
-mtlarbol1.load('models/Arbol1/Arbol1.mtl',function (materials){
-
-	materials.preload();
-
-	arbol1.setMaterials(materials);
-
-	arbol1.load('models/Arbol1/Arbol1.obj',
-
-		function ( object ) {
-			object=object;
-			object.scale.copy(new THREE.Vector3(2, 2, 2));
-			object.position.set(-11, -60, 15);
-			object.rotation.y = 0;
-			scene.add(object);
-		});
-
-	console.log(materials);
-});
-
 mtltrac1.load('models/Tractor/Tractor.mtl',function (materials){
 
 	materials.preload();
@@ -455,10 +302,26 @@ mtltrac1.load('models/Tractor/Tractor.mtl',function (materials){
 
 		function ( object ) {
 			object.scale.copy(new THREE.Vector3(0.12, 0.12, 0.12));
-			object.position.set(-11, -60, 35);
 			object.rotation.y = 98.8;
 			scene.add(object);
 			tractor_obj = object;
+		});
+
+	console.log(materials);
+});
+
+mtlfrut1.load('models/frutas/lowpoly fruits.mtl',function (materials){
+
+	materials.preload();
+
+	frut1.setMaterials(materials);
+
+	frut1.load('models/frutas/lowpoly fruits.obj',
+
+		function ( object ) {
+			object.scale.copy(new THREE.Vector3(1.1, 1.1, 1.1));
+			scene.add(object);
+			fruta_obj = object;
 		});
 
 	console.log(materials);
@@ -474,7 +337,6 @@ mtltrac2.load('models/Tractor/Tractor2.mtl',function (materials){
 
 		function ( object ) {
       object.scale.copy( new THREE.Vector3(0.12, 0.12, 0.12));
-	  object.position.set(9, -60, 35);
 	  object.rotation.y =98.8;
 	   scene.add( object );
 	   tractor2_obj = object;
@@ -484,13 +346,126 @@ mtltrac2.load('models/Tractor/Tractor2.mtl',function (materials){
 	console.log(materials);
 });
 
-mtlSuelo.load('models/suelo/suelo2.mtl',function (materials){
+mtlfrut2.load('models/frutas/lowpoly fruits.mtl',function (materials){
+
+	materials.preload();
+
+	frut2.setMaterials(materials);
+
+	frut2.load('models/frutas/lowpoly fruits.obj',
+
+		function ( object ) {
+			object.scale.copy(new THREE.Vector3(1.1, 1.1, 1.1));
+			scene.add(object);
+			fruta2_obj = object;
+		});
+
+	console.log(materials);
+});
+
+mtlcultivo2.load('models/Cultivo2/cultivo2.mtl',function (materials){
+
+	materials.preload();
+
+	cultivo2.setMaterials(materials);
+
+	cultivo2.load('models/Cultivo2/cultivo2.obj',
+
+		function ( object ) {
+
+      object.scale.copy( new THREE.Vector3(0.2,0.2,0.2));
+	  object.position.x =-23;
+	  object.position.y =-60;
+	  object.position.z =40;
+	  object.rotation.y =110;
+	 
+
+			//scene.add( object );
+
+		});
+
+	console.log(materials);
+});
+
+mtlmount2.load('models/Mount/mount.mtl',function (materials){
+
+	materials.preload();
+
+	mount2.setMaterials(materials);
+
+	mount2.load('models/Mount/mount.obj',
+
+		function ( object ) {
+
+      object.scale.copy( new THREE.Vector3(5,5,5));
+	  object.position.x =64;
+	  object.position.y =-60;
+	  object.position.z =-37;
+	  object.rotation.y =116.33;
+	 
+
+			//scene.add( object );
+
+		});
+
+	console.log(materials);
+});
+
+mtlmount.load('models/Mount/mount.mtl',function (materials){
+
+	materials.preload();
+
+	mount.setMaterials(materials);
+
+	mount.load('models/Mount/mount.obj',
+
+		function ( object ) {
+
+      object.scale.copy( new THREE.Vector3(5,5,5));
+	  object.position.x =-69;
+	  object.position.y =-60;
+	  object.position.z =-50;
+	  object.rotation.y =116.33;
+	 
+
+			//scene.add( object );
+
+		});
+
+	console.log(materials);
+});
+
+mtlcultivo2.load('models/Cultivo2/cultivo2.mtl',function (materials){
+
+	materials.preload();
+
+	cultivo2.setMaterials(materials);
+
+	cultivo2.load('models/Cultivo2/cultivo2.obj',
+
+		function ( object ) {
+
+      object.scale.copy( new THREE.Vector3(0.2,0.2,0.2));
+	  object.position.x =-24;
+	  object.position.y =-60;
+	  object.position.z =30;
+	  object.rotation.y =116.33;
+	 
+
+			//scene.add( object );
+
+		});
+
+	console.log(materials);
+});
+
+mtlSuelo.load('models/suelo/suelo.mtl',function (materials){
 
 	materials.preload();
 
 	Suelo.setMaterials(materials);
 
-	Suelo.load('models/suelo/suelo2.obj',
+	Suelo.load('models/suelo/suelo.obj',
 
 		function ( object ) {
 
@@ -508,6 +483,56 @@ mtlSuelo.load('models/suelo/suelo2.mtl',function (materials){
 	console.log(materials);
 });
   
+mtlGarnja.load('models/granja/Farm.mtl',function (materials){
+
+	materials.preload();
+
+	granja.setMaterials(materials);
+
+	granja.load('models/granja/Farm.obj',
+
+		function ( object ) {
+
+      object.scale.copy( new THREE.Vector3(0.4,0.4,0.4));
+	  object.position.x =24;
+	  object.position.y =-60;
+	  object.position.z =34;
+	  object.rotation.y =116.1;
+	
+
+			//scene.add( object );
+
+		});
+
+	console.log(materials);
+});
+ 
+
+mtlMolino.load('models/Molino/Molino.mtl',function (materials){
+
+	materials.preload();
+
+	Molino.setMaterials(materials);
+
+	Molino.load('models/Molino/Molino.obj',
+
+		function ( object ) {
+
+      object.scale.copy( new THREE.Vector3(0.2,0.2,0.2));
+	  object.position.x =-20;
+	  object.position.y =-60;
+	  object.position.z =5;
+	  object.rotation.y =116.1;
+	
+
+			//scene.add( object );
+
+		});
+
+	console.log(materials);
+});
+
+//obj2
 
 const tree = new OBJLoader(manager);
 var mtltree = new MTLLoader(manager);
@@ -569,41 +594,97 @@ mtlplanta.load('models/planta.mtl',function (materials){
 
 });
 
-mtlfrut1.load('models/frutas/lowpoly fruits.mtl',function (materials){
+mtlcerca_izq.load('models/Cerca/Cerca_1.mtl',function (materials){
 
-	materials.preload();
+  materials.preload();
 
-	frut1.setMaterials(materials);
+  cerca_izq.setMaterials(materials);
 
-	frut1.load('models/frutas/lowpoly fruits.obj',
+  cerca_izq.load('models/Cerca/Cerca_1.obj',
 
-		function ( object ) {
-			object.scale.copy(new THREE.Vector3(1.1, 1.1, 1.1));
-			scene.add(object);
-			fruta_obj = object;
-		});
+	  function ( object ) {
 
-	console.log(materials);
+	object.scale.copy( new THREE.Vector3(0.4,0.33,0.4));
+	  object.rotation.y =99;
+  
+
+		  scene.add( object );
+		  cerca_izquierda_obj = object;
+	  });
+
+  console.log(materials);
+
 });
 
-mtlfrut2.load('models/frutas/lowpoly fruits.mtl',function (materials){
+mtlcerca_der.load('models/Cerca/Cerca_1.mtl',function (materials){
 
 	materials.preload();
-
-	frut2.setMaterials(materials);
-
-	frut2.load('models/frutas/lowpoly fruits.obj',
-
+  
+	cerca_der.setMaterials(materials);
+  
+	cerca_der.load('models/Cerca/Cerca_1.obj',
+  
 		function ( object ) {
-			object.scale.copy(new THREE.Vector3(1.1, 1.1, 1.1));
-			scene.add(object);
-			fruta2_obj = object;
+  
+	  object.scale.copy( new THREE.Vector3(0.4,0.33,0.4));
+		object.rotation.y =99;
+	
+  
+			scene.add( object );
+			cerca_derecha_obj = object;
 		});
-
+  
 	console.log(materials);
-});
+  
+  });
 
-mtlplaga1.load('models/PLAGA/PLAGA2.mtl',function (materials){
+  mtlcerca_atr.load('models/Cerca/Cerca_1.mtl',function (materials){
+
+	materials.preload();
+  
+	cerca_atr.setMaterials(materials);
+  
+	cerca_atr.load('models/Cerca/Cerca_1.obj',
+  
+		function ( object ) {
+  
+	  object.scale.copy( new THREE.Vector3(0.42,0.33,0.4));
+		object.rotation.y =110;
+	
+  
+			scene.add( object );
+			cerca_arriba_obj= object;
+  
+		});
+  
+	console.log(materials);
+  
+  });
+
+  mtlcerca_adl.load('models/Cerca/Cerca_1.mtl',function (materials){
+
+	materials.preload();
+  
+	cerca_adl.setMaterials(materials);
+  
+	cerca_adl.load('models/Cerca/Cerca_1.obj',
+  
+		function ( object ) {
+  
+	  object.scale.copy( new THREE.Vector3(0.43,0.33,0.4));
+		object.rotation.y =110;
+	
+  
+			scene.add( object );
+			cerca_abajo_obj=object;
+  
+		});
+  
+	console.log(materials);
+  
+  });
+
+  mtlplaga1.load('models/PLAGA/PLAGA2.mtl',function (materials){
 
 	materials.preload();
   
@@ -643,8 +724,14 @@ mtlplaga1.load('models/PLAGA/PLAGA2.mtl',function (materials){
   
   });
 
-//-----------------------------------------FUNCIONES--------------------------------------------------------
 
+  //------------------------------ASIGNACION DE CONTROLES--------------------------------------------------//
+
+
+
+// Llama a la función al cargar la página
+
+//-----------------------------------------FUNCIONES-------------------------------------------------------//
 var objectBoundingBoxes = [];
 var Var_vida1 = document.getElementById("valorMostrado");
 var Var_vida2 = document.getElementById("valorMostrado2");
@@ -667,7 +754,7 @@ function actualizarContador() {
 }
 
 // Inicialización del tiempo y configuración del intervalo
-let tiempoTranscurrido = 30;
+let tiempoTranscurrido = 40;
 const intervalo = setInterval(actualizarContador, 1000);
 
 
@@ -806,12 +893,8 @@ function update() {
 update();
 
 
-
-
-
 function animate() {
-
-	plaga_posicion.x = cube_plaga.position.x;
+	 plaga_posicion.x = cube_plaga.position.x;
 	 plaga_posicion.y = cube_plaga.position.y;
 	 plaga_posicion.z = cube_plaga.position.z;
 
@@ -826,7 +909,7 @@ function animate() {
 	plaga2_obj.position.x = plaga2_posicion.x;
 	plaga2_obj.position.y = plaga2_posicion.y;
 	plaga2_obj.position.z = plaga2_posicion.z;
-	
+
 	//Jugador 1
 	cube_tractor.position.x = tractor_posicion.x;
 	cube_tractor.position.y = tractor_posicion.y;
@@ -856,7 +939,7 @@ function animate() {
 	tractor2_obj.position.x = tractor2_posicion.x;
 	tractor2_obj.position.y = tractor2_posicion.y;
 	tractor2_obj.position.z = tractor2_posicion.z;
-	
+
 	fruta2_posicion.x = tractor2_posicion.x + 1.5
 	fruta2_posicion.y = -59.1;
 	fruta2_posicion.z = tractor2_posicion.z - 6.5;
@@ -874,23 +957,82 @@ function animate() {
 	cube_tractor2_col.setFromObject(cube_tractor2);
 	cube_tractor2_col.copy(cube_tractor2.geometry.boundingBox).applyMatrix4(cube_tractor2.matrixWorld);
 
+	//Ubicamos cercas con sus cubos
+	cube_cerca_izquierda.position.x = cerca_izquierda_posicion.x;
+	cube_cerca_izquierda.position.y = cerca_izquierda_posicion.y;
+	cube_cerca_izquierda.position.z = cerca_izquierda_posicion.z;
+  
+	cerca_izquierda_obj.position.x = cerca_izquierda_posicion.x;
+	cerca_izquierda_obj.position.y = cerca_izquierda_posicion.y;
+	cerca_izquierda_obj.position.z = cerca_izquierda_posicion.z;
+  
+	cube_cerca_derecha.position.x = cerca_derecha_posicion.x;
+	cube_cerca_derecha.position.y = cerca_derecha_posicion.y;
+	cube_cerca_derecha.position.z = cerca_derecha_posicion.z;
+  
+	cerca_derecha_obj.position.x = cerca_derecha_posicion.x;
+	cerca_derecha_obj.position.y = cerca_derecha_posicion.y;
+	cerca_derecha_obj.position.z = cerca_derecha_posicion.z;
+  
+	cube_cerca_arriba.position.x = cerca_arriba_posicion.x + 1;
+	cube_cerca_arriba.position.y = cerca_arriba_posicion.y;
+	cube_cerca_arriba.position.z = cerca_arriba_posicion.z;
+  
+	cerca_arriba_obj.position.x = cerca_arriba_posicion.x + 1;
+	cerca_arriba_obj.position.y = cerca_arriba_posicion.y;
+	cerca_arriba_obj.position.z = cerca_arriba_posicion.z;
+
+	cube_cerca_abajo.position.x = cerca_abajo_posicion.x + 1;
+	cube_cerca_abajo.position.y = cerca_abajo_posicion.y;
+	cube_cerca_abajo.position.z = cerca_abajo_posicion.z;
+  
+	cerca_abajo_obj.position.x = cerca_abajo_posicion.x + 1;
+	cerca_abajo_obj.position.y = cerca_abajo_posicion.y;
+	cerca_abajo_obj.position.z = cerca_abajo_posicion.z;
+
 	//----------------------------------------Plaga
 
 	if(VIDAJ1>0){
-		if(plaga1_choque){
-			
+	if(plaga1_choque){
+		
+	cube_plaga.position.y = plaga_posicion.y;
+	plaga_obj.position.y = plaga_posicion.y;
+    const deltaX = cube_tractor.position.x - cube_plaga.position.x;
+    const deltaZ = cube_tractor.position.z - cube_plaga.position.z;
+    if (Math.abs(deltaX) > 0.2) {
+        cube_plaga.position.x += 0.03 * Math.sign(deltaX);
+		plaga_obj.position.x += 0.03 * Math.sign(deltaX);
+	}
+
+    if (Math.abs(deltaZ) > 0.2) {
+		cube_plaga.position.z += 0.03 * Math.sign(deltaZ);
+        plaga_obj.position.z += 0.03 * Math.sign(deltaZ);
+    }
+
+	plaga_col.setFromObject(cube_plaga);
+	plaga_col.copy(cube_plaga.geometry.boundingBox).applyMatrix4(cube_plaga.matrixWorld);
+    }else{
+		contador1 += 1;
+		if(contador1 == 10){
+			plaga1_choque = true;
+			contador1 = 0;
+		}
+	}
+}else{
+	if(plaga1_choque){
+		
 		cube_plaga.position.y = plaga_posicion.y;
 		plaga_obj.position.y = plaga_posicion.y;
-		const deltaX = cube_tractor.position.x - cube_plaga.position.x;
-		const deltaZ = cube_tractor.position.z - cube_plaga.position.z;
-		if (Math.abs(deltaX) > 0.1) {
-			cube_plaga.position.x += 0.01 * Math.sign(deltaX);
-			plaga_obj.position.x += 0.01 * Math.sign(deltaX);
+		const deltaX = cube_tractor2.position.x - cube_plaga.position.x;
+		const deltaZ = cube_tractor2.position.z - cube_plaga.position.z;
+		if (Math.abs(deltaX) > 0.2) {
+			cube_plaga.position.x += 0.03 * Math.sign(deltaX);
+			plaga_obj.position.x += 0.03 * Math.sign(deltaX);
 		}
 	
-		if (Math.abs(deltaZ) > 0.1) {
-			cube_plaga.position.z += 0.01 * Math.sign(deltaZ);
-			plaga_obj.position.z += 0.01 * Math.sign(deltaZ);
+		if (Math.abs(deltaZ) > 0.2) {
+			cube_plaga.position.z += 0.03 * Math.sign(deltaZ);
+			plaga_obj.position.z += 0.03 * Math.sign(deltaZ);
 		}
 	
 		plaga_col.setFromObject(cube_plaga);
@@ -902,49 +1044,49 @@ function animate() {
 				contador1 = 0;
 			}
 		}
-	}else{
-		if(plaga1_choque){
-			
-			cube_plaga.position.y = plaga_posicion.y;
-			plaga_obj.position.y = plaga_posicion.y;
-			const deltaX = cube_tractor2.position.x - cube_plaga.position.x;
-			const deltaZ = cube_tractor2.position.z - cube_plaga.position.z;
-			if (Math.abs(deltaX) > 0.1) {
-				cube_plaga.position.x += 0.01 * Math.sign(deltaX);
-				plaga_obj.position.x += 0.01 * Math.sign(deltaX);
-			}
-		
-			if (Math.abs(deltaZ) > 0.1) {
-				cube_plaga.position.z += 0.01 * Math.sign(deltaZ);
-				plaga_obj.position.z += 0.01 * Math.sign(deltaZ);
-			}
-		
-			plaga_col.setFromObject(cube_plaga);
-			plaga_col.copy(cube_plaga.geometry.boundingBox).applyMatrix4(cube_plaga.matrixWorld);
-			}else{
-				contador1 += 1;
-				if(contador1 == 10){
-					plaga1_choque = true;
-					contador1 = 0;
-				}
-			}
-	}
+}
+
+if(VIDAJ2>0){
+	if(plaga2_choque){
+		cube_plaga2.position.y = plaga2_posicion.y;
+		plaga2_obj.position.y = plaga2_posicion.y;
+		const deltaX = cube_tractor2.position.x - cube_plaga2.position.x;
+		const deltaZ = cube_tractor2.position.z - cube_plaga2.position.z;
 	
-	if(VIDAJ2>0){
+		if (Math.abs(deltaX) > 0.2) {
+			cube_plaga2.position.x += 0.03 * Math.sign(deltaX);
+			plaga2_obj.position.x += 0.03 * Math.sign(deltaX);
+		}
+	
+		if (Math.abs(deltaZ) > 0.2) {
+			cube_plaga2.position.z += 0.03 * Math.sign(deltaZ);
+			plaga2_obj.position.z += 0.03 * Math.sign(deltaZ);
+		}
+	
+		plaga2_col.setFromObject(cube_plaga2);
+		plaga2_col.copy(cube_plaga2.geometry.boundingBox).applyMatrix4(cube_plaga2.matrixWorld);
+		}else{
+			contador2 += 1;
+			if(contador2 == 10){
+				plaga2_choque = true;
+				contador2 = 0;
+			}
+		}
+	}else{
 		if(plaga2_choque){
 			cube_plaga2.position.y = plaga2_posicion.y;
 			plaga2_obj.position.y = plaga2_posicion.y;
-			const deltaX = cube_tractor2.position.x - cube_plaga2.position.x;
-			const deltaZ = cube_tractor2.position.z - cube_plaga2.position.z;
+			const deltaX = cube_tractor.position.x - cube_plaga2.position.x;
+			const deltaZ = cube_tractor.position.z - cube_plaga2.position.z;
 		
-			if (Math.abs(deltaX) > 0.1) {
-				cube_plaga2.position.x += 0.01 * Math.sign(deltaX);
-				plaga2_obj.position.x += 0.01 * Math.sign(deltaX);
+			if (Math.abs(deltaX) > 0.2) {
+				cube_plaga2.position.x += 0.03 * Math.sign(deltaX);
+				plaga2_obj.position.x += 0.03 * Math.sign(deltaX);
 			}
 		
-			if (Math.abs(deltaZ) > 0.1) {
-				cube_plaga2.position.z += 0.01 * Math.sign(deltaZ);
-				plaga2_obj.position.z += 0.01 * Math.sign(deltaZ);
+			if (Math.abs(deltaZ) > 0.2) {
+				cube_plaga2.position.z += 0.03 * Math.sign(deltaZ);
+				plaga2_obj.position.z += 0.03 * Math.sign(deltaZ);
 			}
 		
 			plaga2_col.setFromObject(cube_plaga2);
@@ -956,34 +1098,7 @@ function animate() {
 					contador2 = 0;
 				}
 			}
-		}else{
-			if(plaga2_choque){
-				cube_plaga2.position.y = plaga2_posicion.y;
-				plaga2_obj.position.y = plaga2_posicion.y;
-				const deltaX = cube_tractor.position.x - cube_plaga2.position.x;
-				const deltaZ = cube_tractor.position.z - cube_plaga2.position.z;
-			
-				if (Math.abs(deltaX) > 0.1) {
-					cube_plaga2.position.x += 0.01 * Math.sign(deltaX);
-					plaga2_obj.position.x += 0.01 * Math.sign(deltaX);
-				}
-			
-				if (Math.abs(deltaZ) > 0.1) {
-					cube_plaga2.position.z += 0.01 * Math.sign(deltaZ);
-					plaga2_obj.position.z += 0.01 * Math.sign(deltaZ);
-				}
-			
-				plaga2_col.setFromObject(cube_plaga2);
-				plaga2_col.copy(cube_plaga2.geometry.boundingBox).applyMatrix4(cube_plaga2.matrixWorld);
-				}else{
-					contador2 += 1;
-					if(contador2 == 10){
-						plaga2_choque = true;
-						contador2 = 0;
-					}
-				}
-		}
-	
+	}
 
 	Colisiones();
 
@@ -991,6 +1106,8 @@ function animate() {
 
 	//cube.rotation.x += 0.01;
 	//cube.rotation.y += 0.01;
+
+	
 
 	renderer.render( scene, camera );
 	
@@ -1007,75 +1124,90 @@ var tecla = String.fromCharCode(e.which);
 
 const toggleButton = document.getElementById("toggleButton");
 const hiddenText = document.getElementById("hiddenText");
-const opcionesGuardadas = localStorage.getItem('opciones');
+
+	const opcionesGuardadas = localStorage.getItem('opciones');
 
 	if (opcionesGuardadas) {
 		const opciones = JSON.parse(opcionesGuardadas);
 		console.log(tecla, opciones.teclaIzquierda);
 
+
+if(tecla=='p'||tecla=='P'){
+	alert("POSICION:" +cube.position.x + "," + cube.position.z +"," + cube.position.y);
+}
+
+//Jugador 1
+/*
+if(tecla=='e'||tecla=='E'){
+	tractor_posicion.x=-11;
+	tractor_posicion.z=35;
+	tractor_obj.rotation.y=98.8;
+	//cube_tractor.rotation.y=270;
+	direccion_tractor = "arriba";
+}*/
 if(VIDAJ1>0){
-	if((tecla.toLowerCase()==opciones.teclaIzquierda.toLowerCase()) && move_tractor_izquierda){
-		//cube.position.x--;
-		tractor_posicion.x-=0.7;
-		tractor_obj.rotation.y=270;
-		direccion_tractor = "izquierda";
-		//objfruta1.position.x-=0.7;
-		//cube_tractor.rotation.y=98.8;
-	}
-		
-	if((tecla.toLowerCase()==opciones.teclaDerecha.toLowerCase()) && move_tractor_derecha){
-		//cube.position.x++;
-		tractor_posicion.x+=0.7;
-		tractor_obj.rotation.y=110;
-		direccion_tractor = "derecha";
-		//objfruta1.position.x+=0.7;
-		//cube_tractor.rotation.y=20.41;
-	}
-	if((tecla.toLowerCase()==opciones.teclaArriba.toLowerCase()) && move_tractor_arriba){
-		//cube.position.z--;
-		tractor_posicion.z-=0.7;
-		tractor_obj.rotation.y=98.8;
-		direccion_tractor = "arriba";
-		//objfruta1.position.z-=0.7;
-		//cube_tractor.rotation.y=270;
-	}
-	if((tecla.toLowerCase()==opciones.teclaAbajo.toLowerCase()) && move_tractor_abajo){
-		//cube.position.z ++;
-		tractor_posicion.z+=0.7;
-		tractor_obj.rotation.y=20.41;
-		direccion_tractor = "abajo";
-		//objfruta1.position.z+=0.7;
-		//cube_tractor.rotation.y=110;
-	}
-	}
+if((tecla.toLowerCase()==opciones.teclaIzquierda.toLowerCase()) && move_tractor_izquierda){
+	//cube.position.x--;
+	tractor_posicion.x-=0.7;
+	tractor_obj.rotation.y=270;
+	direccion_tractor = "izquierda";
+	//objfruta1.position.x-=0.7;
+	//cube_tractor.rotation.y=98.8;
+}
 	
-	if(VIDAJ2>0){
-	//Jugador 2
-	if((tecla.toLowerCase()==opciones.teclaIzquierdaR.toLowerCase()) && move_tractor2_izquierda){
-		//cube.position.x--;
-		tractor2_posicion.x-=0.7;
-		tractor2_obj.rotation.y=270;
-		direccion_tractor2 = "izquierda";
-	}
-	if((tecla.toLowerCase()==opciones.teclaDerechaR.toLowerCase()) && move_tractor2_derecha){
-		//cube.position.x++;
-		tractor2_posicion.x+=0.7;
-		tractor2_obj.rotation.y=110;
-		direccion_tractor2 = "derecha";
-	}
-	if((tecla.toLowerCase()==opciones.teclaArribaR.toLowerCase()) && move_tractor2_arriba){
-		//cube.position.z--;
-		tractor2_posicion.z-=0.7;
-		tractor2_obj.rotation.y=98.8;
-		direccion_tractor2 = "arriba";
-	}
-	if((tecla.toLowerCase()==opciones.teclaAbajoR.toLowerCase()) && move_tractor2_abajo){
-		//cube.position.z ++;
-		tractor2_posicion.z+=0.7;
-		tractor2_obj.rotation.y=20.41;
-		direccion_tractor2 = "abajo";
-	}
-	}
+if((tecla.toLowerCase()==opciones.teclaDerecha.toLowerCase()) && move_tractor_derecha){
+	//cube.position.x++;
+	tractor_posicion.x+=0.7;
+	tractor_obj.rotation.y=110;
+	direccion_tractor = "derecha";
+	//objfruta1.position.x+=0.7;
+	//cube_tractor.rotation.y=20.41;
+}
+if((tecla.toLowerCase()==opciones.teclaArriba.toLowerCase()) && move_tractor_arriba){
+	//cube.position.z--;
+	tractor_posicion.z-=0.7;
+	tractor_obj.rotation.y=98.8;
+	direccion_tractor = "arriba";
+	//objfruta1.position.z-=0.7;
+	//cube_tractor.rotation.y=270;
+}
+if((tecla.toLowerCase()==opciones.teclaAbajo.toLowerCase()) && move_tractor_abajo){
+	//cube.position.z ++;
+	tractor_posicion.z+=0.7;
+	tractor_obj.rotation.y=20.41;
+	direccion_tractor = "abajo";
+	//objfruta1.position.z+=0.7;
+	//cube_tractor.rotation.y=110;
+}
+}
+
+if(VIDAJ2>0){
+//Jugador 2
+if((tecla.toLowerCase()==opciones.teclaIzquierdaR.toLowerCase()) && move_tractor2_izquierda){
+	//cube.position.x--;
+	tractor2_posicion.x-=0.7;
+	tractor2_obj.rotation.y=270;
+	direccion_tractor2 = "izquierda";
+}
+if((tecla.toLowerCase()==opciones.teclaDerechaR.toLowerCase()) && move_tractor2_derecha){
+	//cube.position.x++;
+	tractor2_posicion.x+=0.7;
+	tractor2_obj.rotation.y=110;
+	direccion_tractor2 = "derecha";
+}
+if((tecla.toLowerCase()==opciones.teclaArribaR.toLowerCase()) && move_tractor2_arriba){
+	//cube.position.z--;
+	tractor2_posicion.z-=0.7;
+	tractor2_obj.rotation.y=98.8;
+	direccion_tractor2 = "arriba";
+}
+if((tecla.toLowerCase()==opciones.teclaAbajoR.toLowerCase()) && move_tractor2_abajo){
+	//cube.position.z ++;
+	tractor2_posicion.z+=0.7;
+	tractor2_obj.rotation.y=20.41;
+	direccion_tractor2 = "abajo";
+}
+}
 
 if(tecla=='c'||tecla=='C' ){
 	if(al.intensity<1)
@@ -1090,14 +1222,15 @@ if(tecla=='v'||tecla=='V'){
 	//$('canvas').show();
 	//hiddenText.classList.remove("hidden");
 }
-	}
+	
+}
  });
 
 
 });
 
 function Colisiones(){
-	//--------------PARA LOS POWERUPS-------------//
+//--------------PARA LOS POWERUPS-------------//
 for (var i = 0; i < arryescudo.length; i++) {
 	// Verifica si la caja delimitadora del tractor y la del objeto están definidas antes de realizar la comprobación de intersección  TRACTOR ROJO     BOTAS
 	if (cube_tractor2_col && objectBoundingBoxes[i]) {
@@ -1136,8 +1269,10 @@ for (var i = 0; i < arryescudo.length; i++) {
 		}
 	}
 }
-	
-	//Colision entre tractores
+
+
+
+
 	if(cube_tractor_col.intersectsBox(cube_tractor2_col))
 	{
 		if(direccion_tractor == "izquierda"){
@@ -1174,8 +1309,6 @@ for (var i = 0; i < arryescudo.length; i++) {
 		move_tractor2_derecha = true;
 		move_tractor2_izquierda = true;
 	}
-	
-	//Colision cercas
 	if(cube_tractor_col.intersectsBox(cerca_izquierda_col))
 	{
 		tractor_posicion.x+=1;

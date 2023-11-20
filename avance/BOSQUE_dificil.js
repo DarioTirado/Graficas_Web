@@ -667,7 +667,7 @@ function actualizarContador() {
 }
 
 // Inicialización del tiempo y configuración del intervalo
-let tiempoTranscurrido = 30;
+let tiempoTranscurrido = 40;
 const intervalo = setInterval(actualizarContador, 1000);
 
 
@@ -883,14 +883,14 @@ function animate() {
 		plaga_obj.position.y = plaga_posicion.y;
 		const deltaX = cube_tractor.position.x - cube_plaga.position.x;
 		const deltaZ = cube_tractor.position.z - cube_plaga.position.z;
-		if (Math.abs(deltaX) > 0.1) {
-			cube_plaga.position.x += 0.01 * Math.sign(deltaX);
-			plaga_obj.position.x += 0.01 * Math.sign(deltaX);
+		if (Math.abs(deltaX) > 0.2) {
+			cube_plaga.position.x += 0.03 * Math.sign(deltaX);
+			plaga_obj.position.x += 0.03 * Math.sign(deltaX);
 		}
 	
-		if (Math.abs(deltaZ) > 0.1) {
-			cube_plaga.position.z += 0.01 * Math.sign(deltaZ);
-			plaga_obj.position.z += 0.01 * Math.sign(deltaZ);
+		if (Math.abs(deltaZ) > 0.2) {
+			cube_plaga.position.z += 0.03 * Math.sign(deltaZ);
+			plaga_obj.position.z += 0.03 * Math.sign(deltaZ);
 		}
 	
 		plaga_col.setFromObject(cube_plaga);
@@ -909,14 +909,14 @@ function animate() {
 			plaga_obj.position.y = plaga_posicion.y;
 			const deltaX = cube_tractor2.position.x - cube_plaga.position.x;
 			const deltaZ = cube_tractor2.position.z - cube_plaga.position.z;
-			if (Math.abs(deltaX) > 0.1) {
-				cube_plaga.position.x += 0.01 * Math.sign(deltaX);
-				plaga_obj.position.x += 0.01 * Math.sign(deltaX);
+			if (Math.abs(deltaX) > 0.2) {
+				cube_plaga.position.x += 0.03 * Math.sign(deltaX);
+				plaga_obj.position.x += 0.03 * Math.sign(deltaX);
 			}
 		
-			if (Math.abs(deltaZ) > 0.1) {
-				cube_plaga.position.z += 0.01 * Math.sign(deltaZ);
-				plaga_obj.position.z += 0.01 * Math.sign(deltaZ);
+			if (Math.abs(deltaZ) > 0.2) {
+				cube_plaga.position.z += 0.03 * Math.sign(deltaZ);
+				plaga_obj.position.z += 0.03 * Math.sign(deltaZ);
 			}
 		
 			plaga_col.setFromObject(cube_plaga);
@@ -937,14 +937,14 @@ function animate() {
 			const deltaX = cube_tractor2.position.x - cube_plaga2.position.x;
 			const deltaZ = cube_tractor2.position.z - cube_plaga2.position.z;
 		
-			if (Math.abs(deltaX) > 0.1) {
-				cube_plaga2.position.x += 0.01 * Math.sign(deltaX);
-				plaga2_obj.position.x += 0.01 * Math.sign(deltaX);
+			if (Math.abs(deltaX) > 0.2) {
+				cube_plaga2.position.x += 0.03 * Math.sign(deltaX);
+				plaga2_obj.position.x += 0.03 * Math.sign(deltaX);
 			}
 		
-			if (Math.abs(deltaZ) > 0.1) {
-				cube_plaga2.position.z += 0.01 * Math.sign(deltaZ);
-				plaga2_obj.position.z += 0.01 * Math.sign(deltaZ);
+			if (Math.abs(deltaZ) > 0.2) {
+				cube_plaga2.position.z += 0.03 * Math.sign(deltaZ);
+				plaga2_obj.position.z += 0.03 * Math.sign(deltaZ);
 			}
 		
 			plaga2_col.setFromObject(cube_plaga2);
@@ -963,14 +963,14 @@ function animate() {
 				const deltaX = cube_tractor.position.x - cube_plaga2.position.x;
 				const deltaZ = cube_tractor.position.z - cube_plaga2.position.z;
 			
-				if (Math.abs(deltaX) > 0.1) {
-					cube_plaga2.position.x += 0.01 * Math.sign(deltaX);
-					plaga2_obj.position.x += 0.01 * Math.sign(deltaX);
+				if (Math.abs(deltaX) > 0.2) {
+					cube_plaga2.position.x += 0.03 * Math.sign(deltaX);
+					plaga2_obj.position.x += 0.03 * Math.sign(deltaX);
 				}
 			
-				if (Math.abs(deltaZ) > 0.1) {
-					cube_plaga2.position.z += 0.01 * Math.sign(deltaZ);
-					plaga2_obj.position.z += 0.01 * Math.sign(deltaZ);
+				if (Math.abs(deltaZ) > 0.2) {
+					cube_plaga2.position.z += 0.03 * Math.sign(deltaZ);
+					plaga2_obj.position.z += 0.03 * Math.sign(deltaZ);
 				}
 			
 				plaga2_col.setFromObject(cube_plaga2);
